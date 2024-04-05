@@ -1,0 +1,108 @@
+<mxfile host="Electron" modified="2024-03-21T04:23:13.585Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.0.4 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="FjdZxItxcTLW_sNQ1II-" version="24.0.4" type="device" pages="2">
+  <diagram name="Página-1" id="7Cgc1EzrPvPUfzWyMZzP">
+    <mxGraphModel dx="2590" dy="1640" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Y7_J3LvWRUM-ilzWAc7u-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="187" y="177" width="1311" height="832" as="geometry" />
+        </mxCell>
+        <mxCell id="Y7_J3LvWRUM-ilzWAc7u-2" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="187" y="173" width="1311" height="57" as="geometry" />
+        </mxCell>
+        <mxCell id="Y7_J3LvWRUM-ilzWAc7u-3" value="Modelo de negocios CANVAS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="204" y="184" width="269" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Y7_J3LvWRUM-ilzWAc7u-6" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="1326" y="173" width="172" height="57" as="geometry" />
+        </mxCell>
+        <mxCell id="Y7_J3LvWRUM-ilzWAc7u-7" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="1326" y="173" width="173" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="Y7_J3LvWRUM-ilzWAc7u-8" value="Fecha: 22/02/2024" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="1329" y="181" width="159" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="Y7_J3LvWRUM-ilzWAc7u-9" value="Version 1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="1315" y="196" width="180" height="37" as="geometry" />
+        </mxCell>
+        <mxCell id="Y7_J3LvWRUM-ilzWAc7u-10" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="818" y="173" width="508" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="Y7_J3LvWRUM-ilzWAc7u-11" value="Grupo: Aventura 360" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="962" y="186.5" width="163" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Y7_J3LvWRUM-ilzWAc7u-12" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="187" y="230" width="219" height="779" as="geometry" />
+        </mxCell>
+        <mxCell id="Y7_J3LvWRUM-ilzWAc7u-13" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="408" y="230" width="380" height="359" as="geometry" />
+        </mxCell>
+        <mxCell id="Y7_J3LvWRUM-ilzWAc7u-14" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="406" y="589" width="382" height="420" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="SL7RlwD5UlosTdRPhEjq" name="Página-2">
+    <mxGraphModel dx="2309" dy="1620" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="zMRj7Ydpr2wphQesE3QQ-1" value="El capital procede de un grupo de inversionistas&lt;div&gt;&amp;nbsp;interesados&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;en el campo de un servicio facilitador&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;de viajes&lt;/span&gt;&lt;/div&gt;" style="html=1;shadow=0;dashed=0;align=center;verticalAlign=middle;shape=mxgraph.arrows2.arrow;dy=0;dx=30;notch=30;" vertex="1" parent="1">
+          <mxGeometry x="-150" y="50" width="350" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="zMRj7Ydpr2wphQesE3QQ-2" value="Finanzas" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-30" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zMRj7Ydpr2wphQesE3QQ-3" value="Se considera insumo a la recolecta&lt;div&gt;de informacion y descuentos&lt;/div&gt;&lt;div&gt;sobre destinos y lugares que visitar&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="220" y="50" width="240" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="zMRj7Ydpr2wphQesE3QQ-5" value="Insumos" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="285" width="110" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="zMRj7Ydpr2wphQesE3QQ-7" value="Reclutamiento y Capacitación&lt;div&gt;Evaluacion de desempeño&lt;br&gt;Compensacion y beneficios&lt;br&gt;Clima y cultura organizacional&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="50" width="240" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="zMRj7Ydpr2wphQesE3QQ-8" value="Gestion de talentos humanos" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="501.25" width="197.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zMRj7Ydpr2wphQesE3QQ-9" value="Desarrollo y mantenimiento del servicio en linea&lt;br&gt;Base de datos&lt;div&gt;Seguridad informatica&lt;br&gt;Soporte tecnico&amp;nbsp;&lt;/div&gt;&lt;div&gt;Gestion de infraestructura tecnologica&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="735" y="50" width="310" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="zMRj7Ydpr2wphQesE3QQ-10" value="TI" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="820" y="-1.25" width="140" height="27.5" as="geometry" />
+        </mxCell>
+        <mxCell id="zMRj7Ydpr2wphQesE3QQ-11" value="Gestion de relaciones con empresas de:&lt;div&gt;-Vuelo&lt;br&gt;-Hosteleria&lt;br&gt;-Actividades grupales&lt;br&gt;-Guias locales&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="-140" y="-240" width="280" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="zMRj7Ydpr2wphQesE3QQ-12" value="Logistica de entrada" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-70" y="-310" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zMRj7Ydpr2wphQesE3QQ-14" value="- Reserva y confirmación de viajes&lt;br&gt;- Gestión de cambios y cancelaciones&lt;br&gt;-Coordinación con proveedores de servicios de viaje&lt;br&gt;-Gestión de documentación y requisitos de viaje&lt;br&gt;-Preparación de paquetes de viaje" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="-240" width="330" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="zMRj7Ydpr2wphQesE3QQ-15" value="Operaciones de coordinación&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="-310" width="170" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="zMRj7Ydpr2wphQesE3QQ-17" value="- Promocion en redes sociales&lt;div&gt;- Anuncios en plataformas de video&lt;/div&gt;&lt;div&gt;- Presencia en emisoras de radio&lt;br&gt;- Asociación con empresas de vuelo&lt;br&gt;- Analisis y seguimiento de resultados&lt;/div&gt;&lt;div&gt;- Relación con el cliente&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="501.25" y="-240" width="330" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="zMRj7Ydpr2wphQesE3QQ-18" value="Marketing" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="615" y="-310" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="zMRj7Ydpr2wphQesE3QQ-19" value="&lt;div&gt;- Identificar clientes potenciales&lt;/div&gt;- Asesoramiento especializado&lt;br&gt;- Ofertas y cotizaciones&lt;br&gt;- Seguimiento postventa&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="-240" width="330" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="zMRj7Ydpr2wphQesE3QQ-20" value="Ventas" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="965" y="-310" width="120" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="zMRj7Ydpr2wphQesE3QQ-21" value="&lt;div&gt;- Emisión de tickets y confirmaciones.&lt;/div&gt;&lt;div&gt;- Preparación de documentación de viaje.&lt;/div&gt;&lt;div&gt;- Coordinación con proveedores de servicios.&lt;/div&gt;&lt;div&gt;- Gestión de itinerarios y horarios.&lt;/div&gt;&lt;div&gt;- Asistencia en la salida.&lt;/div&gt;&lt;div&gt;- Seguimiento post-salida.&lt;/div&gt;&lt;div&gt;- Gestión de devoluciones y reembolsos.&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="-240" width="330" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="zMRj7Ydpr2wphQesE3QQ-22" value="Logistica de salida" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="-310" width="110" height="25" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
