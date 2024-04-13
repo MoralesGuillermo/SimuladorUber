@@ -1,4 +1,4 @@
-package com.kitsune.kitsune_api.Entities;
+package com.kitsune.kitsune_api.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,7 +11,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-import java.util.List;
+import java.util.List; 
 
 @Entity
 @Table(name="cliente")
