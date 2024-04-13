@@ -1,6 +1,5 @@
 package com.kitsune.kitsune_api.entities;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -21,16 +20,15 @@ public class Tarjetas {
     @Id
     private String pan;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "clienteid", referencedColumnName = "clienteid")
-    private Cliente cliente;
-
     private int cvv;
+
+    @ManyToOne()
+    @JoinColumn(name = "clienteid", referencedColumnName = "clienteid")
+    private Cliente cliente;    
 
     @Column(name="fechacaducidad")
     private LocalDate fechaCaducidad;
 
     @OneToMany(mappedBy = "tarjetas")
     private List<MetodosPago> metodospago;
-
 }

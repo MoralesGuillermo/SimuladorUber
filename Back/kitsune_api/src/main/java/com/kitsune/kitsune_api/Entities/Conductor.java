@@ -1,11 +1,15 @@
 package com.kitsune.kitsune_api.entities;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -28,11 +32,13 @@ public class Conductor {
 
     private boolean disponible;
 
-    private Direcciones direcciones;
+    @ManyToOne
+    @JoinColumn(name="direccionactual", referencedColumnName="direccionid")
+    private Direcciones direccion;
 
-    @OneToOne(mappedBy = "conductor")
-    private Rides rides;
+    @OneToMany(mappedBy = "conductor")
+    private List<Rides> rides;
 
-    @OneToOne(mappedBy = "conductor")
-    private HistoricoRides historicorides;
+    @OneToMany(mappedBy="conductor")
+    private List<ConductorVehiculos> conductorVehiculos;
 }

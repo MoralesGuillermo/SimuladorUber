@@ -1,11 +1,12 @@
 package com.kitsune.kitsune_api.entities;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -21,16 +22,10 @@ public class Vehiculo {
 
     private String color;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "marcaid", referencedColumnName = "marcaid")
+    @ManyToOne()
+    @JoinColumn(name = "marca", referencedColumnName = "marcaid")
     private MarcaVehiculo marcavehiculo;
 
-    @Column(name="tipovehiculo")
-    private int tipoVehiculo;
-
-    @OneToOne(mappedBy = "vehiculo")
-    private Rides rides;
-
-    @OneToOne(mappedBy = "vehiculo")
-    private HistoricoRides historicorides;
+    @OneToMany(mappedBy = "vehiculo")
+    private List<ConductorVehiculos> conductorVehiculos;
 }
