@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -22,33 +23,33 @@ public class Rides {
     @Column(name="rideid")
     private int rideId;
 
+    private LocalDate fecha = LocalDate.now();
+
+    private double ditancia;
+
+    private double costo;
+
+    private int calificacion;
+
+    private char estatus;
+
+    @ManyToOne
+    @JoinColumn(name="clienteid", referencedColumnName="clienteid")
     private Cliente cliente;
 
     @OneToOne
     @JoinColumn(name = "conductorid", referencedColumnName = "conductorid")
     private Conductor conductor;
 
-    @OneToOne
-    @JoinColumn(name = "vehiculovin", referencedColumnName = "vin")
-    private Vehiculo vehiculo;
-
-    private LocalDate fecha;
-
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "direccionorigen", referencedColumnName = "direccionid")
     private Direcciones direccionorigen;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "direcciondestino", referencedColumnName = "direccionid")
     private Direcciones direcciondestino;
 
-    private double ditancia;
-
-    private double costo;
-
+    @ManyToOne
+    @JoinColumn(name="metodoid", referencedColumnName="metodoid")
     private MetodosPago metodospago;
-
-    private int calificacion;
-
-    private char estatus;
 }

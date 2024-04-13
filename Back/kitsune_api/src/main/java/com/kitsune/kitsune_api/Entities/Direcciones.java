@@ -1,11 +1,13 @@
 package com.kitsune.kitsune_api.entities;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -23,9 +25,12 @@ public class Direcciones {
 
     private String longitud;
 
-    @OneToOne(mappedBy = "direccionorigen")
-    private Rides origenride;
+    @OneToMany(mappedBy = "direccionorigen")
+    private List<Rides> origenride;
 
-    @OneToOne(mappedBy = "direcciondestino")
-    private Rides destinoride;
+    @OneToMany(mappedBy = "direcciondestino")
+    private List<Rides> destinoride;
+
+    @OneToMany(mappedBy = "direccion")
+    private List<Conductor> conductores;
 }
