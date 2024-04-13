@@ -4,8 +4,7 @@ import com.kitsune.kitsune_api.dto.HttpResponse;
 import com.kitsune.kitsune_api.dto.VehiculoDto;
 import com.kitsune.kitsune_api.entities.Vehiculo;
 
-public class VehiculoService {
+public interface VehiculoService {
     
-    public  HttpResponse<Vehiculo> nuevoVehiculo(Vehiculo vehiculo);
-
+    public  HttpResponse<Vehiculo> crearVehiculo(VehiculoDto vehiculo);
 }

@@ -10,4 +10,6 @@ public interface RidesService {
     public HttpResponse<String> cancelarRide(int rideId);
 
     public HttpResponse<String> calificarRide(int rideId, int calificaion);
+
+    
 }

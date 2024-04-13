@@ -9,7 +9,7 @@ import com.kitsune.kitsune_api.entities.Usuario;
 
 public interface UsuarioService {
 
-    public  HttpResponse<Usuario> crearUsuario(UsuarioDto usuarioDto);
+    public HttpResponse<Usuario> crearUsuario(UsuarioDto usuarioDto);
 
     public HttpResponse<String> borrarUsuario(int userId);
 

@@ -7,7 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -25,7 +24,7 @@ public class Rides {
 
     private LocalDate fecha = LocalDate.now();
 
-    private double ditancia;
+    private double distancia;
 
     private double costo;
 
@@ -37,17 +36,17 @@ public class Rides {
     @JoinColumn(name="clienteid", referencedColumnName="clienteid")
     private Cliente cliente;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "conductorid", referencedColumnName = "conductorid")
     private Conductor conductor;
 
     @ManyToOne
     @JoinColumn(name = "direccionorigen", referencedColumnName = "direccionid")
-    private Direcciones direccionorigen;
+    private Direcciones direccionOrigen;
 
     @ManyToOne
     @JoinColumn(name = "direcciondestino", referencedColumnName = "direccionid")
-    private Direcciones direcciondestino;
+    private Direcciones direccionDestino;
 
     @ManyToOne
     @JoinColumn(name="metodoid", referencedColumnName="metodoid")

@@ -16,7 +16,7 @@ public class MarcaVehiculo {
     
     @Id
     @Column(name="marcaid")
-    private String marcaID;
+    private String marcaId;
 
     private String descripcion;
 
