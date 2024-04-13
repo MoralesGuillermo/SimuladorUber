@@ -1,4 +1,4 @@
-package com.kitsune.kitsune_api.Entities;
+package com.kitsune.kitsune_api.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
