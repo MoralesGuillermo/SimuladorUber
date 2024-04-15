@@ -53,6 +53,4 @@ public class UsuarioServiceImpl implements UsuarioService{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'verRidesCliente'");
     }
-
-    
 }

@@ -31,7 +31,7 @@ public class ClienteServiceImpl implements ClienteService{
     public HttpResponse<Cliente> crearCliente(ClienteDto clienteDto){
         HttpResponse<Cliente> response = new HttpResponse<>();
         if (isIncomplete(clienteDto)){   // Los datos no se enviaron completos
-            response.setStatus((short) 400);
+            response.setStatus((short)400);
         }
         else if (personaAlreadyExists(clienteDto) || usuarioAlreadyExists(clienteDto)){ // Se usó un dni o un usuario ya existente
             response.setStatus((short) 406);
