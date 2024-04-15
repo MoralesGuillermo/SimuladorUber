@@ -8,6 +8,6 @@ import com.kitsune.kitsune_api.entities.Usuario;
 @Repository
 public interface UsuarioRepository extends CrudRepository<Usuario, Integer>{
 
-    String getByUsername(String username);
+    public Usuario getByUsername(String username);
     
 }
