@@ -1,4 +1,4 @@
-package com.kitsune.kitsune_api.services.Impl;
+package com.kitsune.kitsune_api.services.impl;
 
 import java.util.List;
 
@@ -6,18 +6,10 @@ import org.springframework.stereotype.Service;
 
 import com.kitsune.kitsune_api.dto.HttpResponse;
 import com.kitsune.kitsune_api.dto.InformacionRide;
-import com.kitsune.kitsune_api.dto.UsuarioDto;
-import com.kitsune.kitsune_api.entities.Usuario;
 import com.kitsune.kitsune_api.services.UsuarioService;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService{
-
-    @Override
-    public HttpResponse<Usuario> crearUsuario(UsuarioDto usuarioDto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'crearUsuario'");
-    }
 
     @Override
     public HttpResponse<String> borrarUsuario(int userId) {
@@ -36,5 +28,6 @@ public class UsuarioServiceImpl implements UsuarioService{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'verRidesCliente'");
     }
+
     
 }
