@@ -1,13 +1,18 @@
 package com.kitsune.kitsune_api.services.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kitsune.kitsune_api.dto.HttpResponse;
 import com.kitsune.kitsune_api.entities.Tarjetas;
+import com.kitsune.kitsune_api.repositories.TarjetasRepository;
 import com.kitsune.kitsune_api.services.TarjetasService;
 
 @Service
 public class TarjetasServiceImpl implements TarjetasService{
+
+    @Autowired
+    private TarjetasRepository tarjetasRepository;
 
     @Override
     public HttpResponse<Tarjetas> nuevaTarjeta(Tarjetas tarjeta) {
@@ -17,8 +22,16 @@ public class TarjetasServiceImpl implements TarjetasService{
 
     @Override
     public HttpResponse<String> eliminarTarjeta(String pan) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminarTarjeta'");
+        HttpResponse<String> response = new HttpResponse<>();
+        if (null!=pan) {
+            if (null!=this.tarjetasRepository.findById(pan)) {
+                return this.eliminarTarjeta(pan);
+            }
+            response.setStatus((short) 404);
+            return response;
+        }
+        response.setStatus((short) 204);
+        return response;
     }
     
     
