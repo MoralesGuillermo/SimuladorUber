@@ -11,5 +11,7 @@ public interface RidesService {
 
     public HttpResponse<String> calificarRide(int rideId, int calificaion);
 
+    public HttpResponse<Rides> solicitarRide(Rides ride);
+
     
 }

@@ -15,5 +15,4 @@ public interface ConductorService {
     public HttpResponse<String> cambiarVehiculo(int conductorId, VehiculoDto vehiculoDto);
 
     public  HttpResponse<List<InformacionRide>> obtenerRidesConductor(int conductorId);
-
 }

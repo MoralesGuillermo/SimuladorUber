@@ -47,10 +47,4 @@ public class UsuarioServiceImpl implements UsuarioService{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'cambiarPassword'");
     }
-
-    @Override
-    public HttpResponse<List<InformacionRide>> verRidesCliente(int userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'verRidesCliente'");
-    }
 }

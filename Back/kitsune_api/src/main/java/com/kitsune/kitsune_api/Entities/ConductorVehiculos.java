@@ -24,7 +24,7 @@ public class ConductorVehiculos {
     @Column(name="fechainiciooperacion")
     LocalDate fechaInicioOperacion;
 
-    @Column(name="fechafinoperacion")
+    @Column(name="fechafinalizacionoperacion")
     LocalDate fechaFinOperacion;
 
     char estatus;
