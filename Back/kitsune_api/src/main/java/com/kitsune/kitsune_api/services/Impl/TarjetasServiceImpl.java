@@ -33,7 +33,7 @@ public class TarjetasServiceImpl implements TarjetasService{
             response.setStatus((short) 404);
             return response;
         }
-        response.setStatus((short) 204);
+        response.setStatus((short) 400);
         return response;
     }
     
