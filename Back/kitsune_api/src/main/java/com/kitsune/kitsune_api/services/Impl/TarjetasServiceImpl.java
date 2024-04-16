@@ -10,7 +10,7 @@ import com.kitsune.kitsune_api.services.TarjetasService;
 public class TarjetasServiceImpl implements TarjetasService{
 
     @Override
-    public HttpResponse<Tarjetas> nuevaTarjeta(Tarjetas tarjeta) {
+    public HttpResponse<Tarjetas> nuevaTarjeta(Tarjetas tarjeta, int clienteId) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'nuevaTarjeta'");
     }
@@ -20,6 +20,5 @@ public class TarjetasServiceImpl implements TarjetasService{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'eliminarTarjeta'");
     }
-    
     
 }
