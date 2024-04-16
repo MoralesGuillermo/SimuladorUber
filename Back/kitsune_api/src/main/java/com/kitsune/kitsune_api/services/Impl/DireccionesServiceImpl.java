@@ -1,4 +1,4 @@
-package com.kitsune.kitsune_api.services.Impl;
+package com.kitsune.kitsune_api.services.impl;
 
 import org.springframework.stereotype.Service;
 
