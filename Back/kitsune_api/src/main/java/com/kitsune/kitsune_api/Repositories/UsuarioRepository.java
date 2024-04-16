@@ -7,5 +7,7 @@ import com.kitsune.kitsune_api.entities.Usuario;
 
 @Repository
 public interface UsuarioRepository extends CrudRepository<Usuario, Integer>{
+
+    public Usuario getByUsername(String username);
     
 }
