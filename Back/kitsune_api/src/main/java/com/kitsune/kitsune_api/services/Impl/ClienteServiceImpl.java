@@ -66,28 +66,29 @@ public class ClienteServiceImpl implements ClienteService{
 
     @Override
     public HttpResponse<PerfilCliente> verPerfil(int clienteId) {
-        Cliente cliente = clienteRepository.findById(clienteId).get();
         HttpResponse<PerfilCliente> response = new HttpResponse<>();
-        if (cliente == null){
-            response.setStatus((short)404);
+        if (clienteRepository.existsById(clienteId)){
+            Cliente cliente = clienteRepository.findById(clienteId).get();
+            
+            PerfilCliente perfilCliente = new PerfilCliente();
+            PerfilPersona perfilPersona = new PerfilPersona();
+            Persona personaCliente = cliente.getPersona();
+            
+            perfilPersona.setDni(personaCliente.getDni());
+            perfilPersona.setNombre(personaCliente.getNombre());
+            perfilPersona.setApellido(personaCliente.getApellido());
+            perfilPersona.setEmail(personaCliente.getEmail());
+            perfilPersona.setTelefono(personaCliente.getTelefono());
+            
+            perfilCliente.setPerfilPersona(perfilPersona); 
+            perfilCliente.setUsername(cliente.getUsuario().getUsername());
+            
+            response.setStatus((short) 200);
+            response.setResponseBody(perfilCliente);
             return response;
         }
-        PerfilCliente perfilCliente = new PerfilCliente();
-        PerfilPersona perfilPersona = new PerfilPersona();
-        Persona personaCliente = cliente.getPersona();
-        
-        perfilPersona.setDni(personaCliente.getDni());
-        perfilPersona.setNombre(personaCliente.getNombre());
-        perfilPersona.setApellido(personaCliente.getApellido());
-        perfilPersona.setEmail(personaCliente.getEmail());
-        perfilPersona.setTelefono(personaCliente.getTelefono());
-        
-        perfilCliente.setPerfilPersona(perfilPersona); 
-        perfilCliente.setUsername(cliente.getUsuario().getUsername());
-        
-        response.setStatus((short) 200);
-        response.setResponseBody(perfilCliente);
-        return response;
+            response.setStatus((short)404);
+            return response;
     }
 
     @Override
