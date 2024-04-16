@@ -64,9 +64,6 @@ public class ClienteServiceImpl implements ClienteService{
         return clienteRepository.save(cliente);
     }
 
-    @Autowired
-    ClienteRepository clienteRepository;
-
     @Override
     public HttpResponse<PerfilCliente> verPerfil(int clienteId) {
         Cliente cliente = clienteRepository.findById(clienteId).get();
