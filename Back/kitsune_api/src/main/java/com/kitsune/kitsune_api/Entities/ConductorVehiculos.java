@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import com.kitsune.kitsune_api.entities.compisite_keys.ConductorVehiculoKey;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -29,12 +30,12 @@ public class ConductorVehiculos {
 
     char estatus;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @MapsId("conductorId")
     @JoinColumn(name="conductorid", referencedColumnName = "conductorid")
     private Conductor conductor;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @MapsId("vehiculoVin")
     @JoinColumn(name = "vehiculovin", referencedColumnName = "vin")
     private Vehiculo vehiculo;

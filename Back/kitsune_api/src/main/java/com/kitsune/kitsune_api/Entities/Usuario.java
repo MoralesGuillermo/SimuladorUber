@@ -25,4 +25,7 @@ public class Usuario {
 
     @OneToOne(mappedBy = "usuario")
     private Cliente cliente;
+
+    @OneToOne(mappedBy  = "usuario")
+    private Conductor conductor;
 }
