@@ -30,7 +30,7 @@ public class ConductorServiceImpl implements ConductorService{
     @Override
     public HttpResponse<PerfilConductor> verPerfil(int conductorId) {
         HttpResponse<PerfilConductor> response = new HttpResponse<>();
-            if (null!=this.conductorRepository.findById(conductorId)) {
+            if (this.conductorRepository.existsById(conductorId)) {
             Conductor conductor = conductorRepository.findById(conductorId).get();
             
             List<ConductorVehiculos> conductorVehiculos = conductor.getConductorVehiculos();

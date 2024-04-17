@@ -72,15 +72,16 @@ private MetodosPagoRepository metodosPagoRepository;
         Conductor conductor = conductorRepository.findById(ride.getConductorId()).get();
         nuevoRide.setDistancia(ride.getDistancia());
         nuevoRide.setCosto(ride.getCosto());
-        nuevoRide.setCalificacion(ride.getCalificacion());
-        nuevoRide.setEstatus(ride.getEstatus());
+        nuevoRide.setEstatus('A'); //El estatus del ride es aprobado
         nuevoRide.setCliente(this.clienteRepository.findById(ride.getClienteid()).get());
         nuevoRide.setConductor(conductor);
         conductor.setDisponible(false); //El conductor deja de estar disponible
         nuevoRide.setDireccionOrigen(this.direccionesRepository.findById(ride.getIdDireccionOrigen()).get());
         nuevoRide.setDireccionDestino(this.direccionesRepository.findById(ride.getIdDireccionDestino()).get());
         nuevoRide.setMetodospago(this.metodosPagoRepository.findById(ride.getMetodoid()).get());
-           Rides rideIniciado = this.ridesRepository.save(nuevoRide);
+        nuevoRide.setCliente(this.clienteRepository.findById(ride.getClienteid()).get());
+        this.conductorRepository.save(conductor);
+         Rides rideIniciado = this.ridesRepository.save(nuevoRide);
             response.setStatus((short) 200);
             response.setResponseBody(rideIniciado);
             return response;
@@ -99,7 +100,8 @@ private MetodosPagoRepository metodosPagoRepository;
         HttpResponse<String> response = new HttpResponse<>();
             if (this.ridesRepository.existsById(rideId)) {
                 Rides rideCancelado = this.ridesRepository.findById(rideId).get();
-                this.ridesRepository.delete(rideCancelado);
+                rideCancelado.setEstatus('C');
+                this.ridesRepository.save(rideCancelado);
                 response.setStatus((short) 200);
                 response.setResponseBody("Ride Cancelado Correctamente");
                 return response;
@@ -129,6 +131,24 @@ private MetodosPagoRepository metodosPagoRepository;
         this.conductorRepository.save(conductorCalificado);  
             response.setStatus((short) 200);
             response.setResponseBody("Ride Calificado Correctamente");
+            return response;
+        }
+        response.setStatus((short) 404);
+        return response;
+    }
+
+    @Override
+    public HttpResponse<String> finalizarRide(int rideId) {
+        HttpResponse<String> response = new HttpResponse<>();
+        if (this.ridesRepository.existsById(rideId)) {
+            Rides rideFinalizado = this.ridesRepository.findById(rideId).get();
+            rideFinalizado.setEstatus('F');
+            Conductor conductorRide= this.conductorRepository.findById(rideFinalizado.getConductor().getConductorId()).get();
+            conductorRide.setDisponible(true);
+            this.conductorRepository.save(conductorRide);
+            this.ridesRepository.save(rideFinalizado);
+            response.setStatus((short) 200);
+            response.setResponseBody("Ride Finalizado Correctamente");
             return response;
         }
         response.setStatus((short) 404);

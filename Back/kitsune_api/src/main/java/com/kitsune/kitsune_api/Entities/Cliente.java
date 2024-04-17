@@ -12,7 +12,8 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-import java.util.List; 
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore; 
 
 @Entity
 @Table(name="cliente")
@@ -24,17 +25,21 @@ public class Cliente {
     @Column(name="clienteid")
     private int clienteId;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "dni", referencedColumnName = "dni")
     private Persona persona;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userid", referencedColumnName = "userid")
     private Usuario usuario;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Tarjetas> tarjetas;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Rides> rides;
 }

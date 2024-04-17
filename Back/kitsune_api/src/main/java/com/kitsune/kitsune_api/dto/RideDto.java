@@ -1,23 +1,20 @@
 package com.kitsune.kitsune_api.dto;
 
 import lombok.Data;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kitsune.kitsune_api.entities.Cliente;
 
 @Data
 public class RideDto {
     
-    private int rideId;
-
     private double distancia;
 
     private double costo;
 
-    private int calificacion;
-
-    private char estatus;
-
     private int clienteid;
 
+    @JsonIgnore
     private Cliente clienteRide;
 
     private int conductorId;

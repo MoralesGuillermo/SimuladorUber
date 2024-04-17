@@ -24,7 +24,7 @@ public class TarjetasServiceImpl implements TarjetasService{
     public HttpResponse<String> eliminarTarjeta(String pan) {
         HttpResponse<String> response = new HttpResponse<>();
         if (null!=pan) {
-            if (null!=this.tarjetasRepository.findById(pan)) {
+            if (this.tarjetasRepository.existsById(pan)) {
                 Tarjetas tarjeta = this.tarjetasRepository.findById(pan).get();
                 this.tarjetasRepository.delete(tarjeta);
                 response.setStatus((short) 200);

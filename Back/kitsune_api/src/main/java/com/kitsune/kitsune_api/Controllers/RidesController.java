@@ -35,7 +35,7 @@ private RidesServiceImpl ridesServiceImpl;
         return this.ridesServiceImpl.nuevoRide(ride);
     }
 
-    @DeleteMapping("/ride/cancelar/{rideId}")
+    @PutMapping("/ride/cancelar/{rideId}")
     public HttpResponse<String> cancelarRide(@PathVariable int rideId) {
         return this.ridesServiceImpl.cancelarRide(rideId);
     }
@@ -45,4 +45,9 @@ private RidesServiceImpl ridesServiceImpl;
         return this.ridesServiceImpl.calificarRide(rideId, calificacion);
     }
     
+    @PutMapping("/ride/finalizado/{rideId}")
+    public HttpResponse<String> finalizarRide(@PathVariable int rideId) {
+        return this.ridesServiceImpl.finalizarRide(rideId);
+    }
+
 }
