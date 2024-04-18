@@ -12,7 +12,9 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-import java.util.List; 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore; 
 
 @Entity
 @Table(name="cliente")
@@ -32,6 +34,7 @@ public class Cliente {
     @JoinColumn(name = "userid", referencedColumnName = "userid")
     private Usuario usuario;
 
+    
     @OneToMany(mappedBy = "cliente")
     private List<Tarjetas> tarjetas;
 

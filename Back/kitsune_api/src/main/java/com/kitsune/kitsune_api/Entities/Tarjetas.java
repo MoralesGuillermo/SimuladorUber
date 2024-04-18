@@ -12,10 +12,13 @@ import lombok.Data;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="tarjetas")
 @Data
 public class Tarjetas {
+    
     
     @ManyToOne()
     @JoinColumn(name = "clienteid", referencedColumnName = "clienteid")

@@ -9,6 +9,7 @@ import com.kitsune.kitsune_api.services.RidesService;
 @Service
 public class RidesServiceImpl implements RidesService{
 
+
     @Override
     public HttpResponse<Rides> nuevoRide(Rides ride) {
         // TODO Auto-generated method stub
@@ -25,6 +26,12 @@ public class RidesServiceImpl implements RidesService{
     public HttpResponse<String> calificarRide(int rideId, int calificaion) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'calificarRide'");
+    }
+
+    @Override
+    public HttpResponse<Rides> solicitarRide(Rides ride) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'solicitarRide'");
     }
     
 }

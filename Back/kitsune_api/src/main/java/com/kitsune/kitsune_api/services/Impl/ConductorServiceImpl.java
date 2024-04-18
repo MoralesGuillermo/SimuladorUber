@@ -1,5 +1,6 @@
 package com.kitsune.kitsune_api.services.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,28 +8,91 @@ import org.springframework.stereotype.Service;
 
 import com.kitsune.kitsune_api.dto.HttpResponse;
 import com.kitsune.kitsune_api.dto.InformacionRide;
+import com.kitsune.kitsune_api.dto.NuevoConductorDto;
 import com.kitsune.kitsune_api.dto.PerfilConductor;
 import com.kitsune.kitsune_api.dto.PerfilPersona;
+import com.kitsune.kitsune_api.dto.VehiculoDto;
 import com.kitsune.kitsune_api.entities.Conductor;
 import com.kitsune.kitsune_api.entities.ConductorVehiculos;
 import com.kitsune.kitsune_api.entities.Persona;
 import com.kitsune.kitsune_api.entities.Vehiculo;
 import com.kitsune.kitsune_api.repositories.ConductorRepository;
+
+import com.kitsune.kitsune_api.entities.Usuario;
+import com.kitsune.kitsune_api.entities.compisite_keys.ConductorVehiculoKey;
+import com.kitsune.kitsune_api.repositories.ConductorRepository;
 import com.kitsune.kitsune_api.repositories.ConductorVehiculosRepository;
+import com.kitsune.kitsune_api.repositories.PersonaRepository;
+import com.kitsune.kitsune_api.repositories.UsuarioRepository;
+
 import com.kitsune.kitsune_api.repositories.VehiculoRepository;
 import com.kitsune.kitsune_api.services.ConductorService;
 
 @Service
 public class ConductorServiceImpl implements ConductorService{
+    
+    @Autowired
+    ConductorRepository conductorRepository;
 
     @Autowired
-    private ConductorRepository conductorRepository;
+    VehiculoRepository vehiculoRepository;
 
     @Autowired
-    private VehiculoRepository vehiculoRepository;
+    PersonaRepository personaRepository;
 
     @Autowired
-    private ConductorVehiculosRepository conductorVehiculosRepository;
+    UsuarioRepository usuarioRepository;
+
+    @Autowired
+    ConductorVehiculosRepository conductorVehiculosRepository;
+
+    @Override
+    public HttpResponse<Conductor> crearConductor(NuevoConductorDto nuevoConductor){
+        Vehiculo vehiculoNuevoConductor = nuevoConductor.getVehiculo();
+        Persona personaNuevoConductor = nuevoConductor.getPersona();
+        Usuario usuarioNuevoConductor = nuevoConductor.getUsuario();
+        HttpResponse<Conductor> response = new HttpResponse<>();
+        if (vehiculoAlreadyExists(vehiculoNuevoConductor)|| personaAlreadyExists(personaNuevoConductor) || usuarioAlreadyExists(usuarioNuevoConductor) ){
+            response.setStatus((short) 406);
+            return response;
+        }
+        Conductor conductor = new Conductor();
+        conductor.setPersona(personaNuevoConductor);
+        conductor.setDisponible(true);
+        conductor.setRating(0);
+        conductor.setUsuario(usuarioNuevoConductor);
+
+        Vehiculo savedVehiculo = vehiculoRepository.save(vehiculoNuevoConductor);
+        Conductor savedConductor = conductorRepository.save(conductor);
+
+        ConductorVehiculoKey conductorVehiculoKey = new ConductorVehiculoKey();
+        conductorVehiculoKey.setConductorId(savedConductor.getConductorId());
+        conductorVehiculoKey.setVehiculoVin(savedVehiculo.getVin());
+
+        ConductorVehiculos conductorVehiculosNuevo = new ConductorVehiculos();
+        conductorVehiculosNuevo.setConductorVehiculoKey(conductorVehiculoKey);
+        conductorVehiculosNuevo.setFechaInicioOperacion(LocalDate.now());
+        conductorVehiculosNuevo.setEstatus('A');
+        conductorVehiculosNuevo.setVehiculo(vehiculoNuevoConductor);
+        conductorVehiculosNuevo.setConductor(conductor);
+        conductorVehiculosRepository.save(conductorVehiculosNuevo);
+
+        response.setStatus((short) 200);
+        response.setResponseBody(savedConductor);
+        return response;
+    }
+
+    private boolean vehiculoAlreadyExists(Vehiculo vehiculo){
+        return vehiculoRepository.existsById(vehiculo.getVin());
+    }
+
+    private boolean personaAlreadyExists(Persona persona){
+        return personaRepository.existsById(persona.getDni());
+    }
+
+    private boolean usuarioAlreadyExists(Usuario user){
+        return usuarioRepository.getByUsername(user.getUsername()) != null;
+    }
 
     @Override
     public HttpResponse<PerfilConductor> verPerfil(int conductorId) {
@@ -40,7 +104,6 @@ public class ConductorServiceImpl implements ConductorService{
             char estado = 'A';
                 for (ConductorVehiculos conductorVehiculo: conductorVehiculos) {
                     if (estado == conductorVehiculo.getEstatus() && conductorId == conductorVehiculo.getConductorVehiculoKey().getConductorId()) {
-
                         String vinVehiculo = conductorVehiculo.getConductorVehiculoKey().getVehiculoVin();
                         Vehiculo vehiculo = this.vehiculoRepository.findById(vinVehiculo).get();
 
@@ -70,8 +133,8 @@ public class ConductorServiceImpl implements ConductorService{
             }
         response.setStatus((short) 404);
         return response;
-}
-    
+    }
+
 
     @Override
     public HttpResponse<String> cambiarVehiculo(int conductorId, Vehiculo vehiculo) {
@@ -126,5 +189,7 @@ public class ConductorServiceImpl implements ConductorService{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'obtenerRidesConductor'");
     }
+
+
     
 }
