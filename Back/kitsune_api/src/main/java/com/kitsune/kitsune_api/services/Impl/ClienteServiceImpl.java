@@ -1,5 +1,6 @@
 package com.kitsune.kitsune_api.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +9,12 @@ import org.springframework.stereotype.Service;
 import com.kitsune.kitsune_api.dto.ClienteDto;
 import com.kitsune.kitsune_api.dto.HttpResponse;
 import com.kitsune.kitsune_api.dto.InformacionRide;
+import com.kitsune.kitsune_api.dto.InformacionRideCliente;
 import com.kitsune.kitsune_api.dto.PerfilCliente;
 import com.kitsune.kitsune_api.dto.PerfilPersona;
 import com.kitsune.kitsune_api.entities.Cliente;
 import com.kitsune.kitsune_api.entities.Persona;
+import com.kitsune.kitsune_api.entities.Rides;
 import com.kitsune.kitsune_api.repositories.ClienteRepository;
 import com.kitsune.kitsune_api.repositories.PersonaRepository;
 import com.kitsune.kitsune_api.repositories.UsuarioRepository;
@@ -92,8 +95,72 @@ public class ClienteServiceImpl implements ClienteService{
     }
 
     @Override
-    public HttpResponse<List<InformacionRide>> mostrarRidesCliente(int clienteId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarRidesCliente'");
+    public HttpResponse<List<InformacionRideCliente>> mostrarRidesCliente(int clienteId) {
+        HttpResponse<List<InformacionRideCliente>> response = new HttpResponse<>();
+        //Si existe el cliente:
+        if (this.clienteRepository.existsById(clienteId)){
+            Cliente cliente = this.clienteRepository.findById(clienteId).get();
+            //Si cliente tiene rides
+                if (null != cliente.getRides()) {
+                    Persona persona = cliente.getPersona();
+                    List<Rides> listaRides = cliente.getRides();
+                    
+
+                    List<InformacionRideCliente> listaInformacionRides = new ArrayList<>();
+                    PerfilPersona perfilPersona = new PerfilPersona();
+                    PerfilCliente perfilCliente = new PerfilCliente();
+
+                    perfilPersona.setApellido(persona.getApellido());
+                    perfilPersona.setDni(persona.getDni());
+                    perfilPersona.setEmail(persona.getEmail());
+                    perfilPersona.setNombre(persona.getNombre());
+                    perfilPersona.setTelefono(persona.getTelefono());
+                    perfilCliente.setPerfilPersona(perfilPersona);
+                    perfilCliente.setUsername(cliente.getUsuario().getUsername());
+                    
+
+                    for (int i = 0; i < listaRides.size(); i++) {
+
+                        InformacionRideCliente informacionRideCliente = new InformacionRideCliente();
+                        informacionRideCliente.setCalificacion(listaRides.get(i).getCalificacion());
+                        informacionRideCliente.setPerfilCliente(perfilCliente);
+                        informacionRideCliente.setDestinoRide(listaRides.get(i).getDireccionDestino());
+                        informacionRideCliente.setFechaRide(listaRides.get(i).getFecha());
+                        informacionRideCliente.setOrigenRide(listaRides.get(i).getDireccionOrigen());
+                        informacionRideCliente.setPrecioRide(listaRides.get(i).getCosto());
+                        listaInformacionRides.add(informacionRideCliente);
+
+
+                        /*InformacionRideCliente informacionRideCliente = new InformacionRideCliente();
+                        listaInformacionRides.get(i).setCalificacion(listaRides.get(i).getCalificacion());
+                        listaInformacionRides.get(i).setPerfilCliente(perfilCliente);
+                        listaInformacionRides.get(i).setDestinoRide(listaRides.get(i).getDireccionDestino());
+                        listaInformacionRides.get(i).setFechaRide(listaRides.get(i).getFecha());
+                        listaInformacionRides.get(i).setOrigenRide(listaRides.get(i).getDireccionOrigen());
+                        listaInformacionRides.get(i).setPrecioRide(listaRides.get(i).getCosto());
+                        listaInformacionRides.add(informacionRideCliente);
+                         */
+                        
+
+                    }
+
+
+
+
+                    response.setResponseBody(listaInformacionRides);
+                    response.setStatus((short)200);
+                    return response;
+                }
+                //Si cliente no tiene rides
+                else{
+                    response.setStatus((short)400);
+                    return response;
+                }
+        }
+        //Si no existe el cliente
+        else{
+            response.setStatus((short)400);
+            return response;
+        }
     }
 }
