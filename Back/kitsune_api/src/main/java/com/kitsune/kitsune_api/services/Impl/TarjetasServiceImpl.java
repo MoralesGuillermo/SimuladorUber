@@ -1,13 +1,10 @@
 package com.kitsune.kitsune_api.services.impl;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.kitsune.kitsune_api.dto.HttpResponse;
 import com.kitsune.kitsune_api.dto.TarjetasDTO;
 import com.kitsune.kitsune_api.entities.Cliente;
@@ -85,8 +82,19 @@ public class TarjetasServiceImpl implements TarjetasService{
 
     @Override
     public HttpResponse<String> eliminarTarjeta(String pan) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminarTarjeta'");
+        HttpResponse<String> response = new HttpResponse<>();
+        if (null!=pan) {
+            if (null!=this.tarjetasRepository.findById(pan)) {
+                Tarjetas tarjeta = this.tarjetasRepository.findById(pan).get();
+                this.tarjetasRepository.delete(tarjeta);
+                response.setStatus((short) 200);
+                return response;
+            }
+            response.setStatus((short) 404);
+            return response;
+        }
+        response.setStatus((short) 400);
+        return response;
     }
     
 }
