@@ -31,6 +31,5 @@ public class ConductorController {
     @GetMapping("/verPerfilConductor/{conductorId}")
     public HttpResponse<PerfilConductor> verPerfilConductor(@PathVariable int conductorId) {
         return this.conductorServiceImpl.verPerfil(conductorId);
-    }
-    
+    }    
 }

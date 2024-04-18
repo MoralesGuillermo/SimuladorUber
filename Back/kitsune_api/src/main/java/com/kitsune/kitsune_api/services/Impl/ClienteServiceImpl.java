@@ -117,17 +117,14 @@ public class ClienteServiceImpl implements ClienteService{
                     perfilPersona.setTelefono(persona.getTelefono());
                     perfilCliente.setPerfilPersona(perfilPersona);
                     perfilCliente.setUsername(cliente.getUsuario().getUsername());
-                    
-
-                    for (int i = 0; i < listaRides.size(); i++) {
-
+                    for (Rides ride: listaRides) {
                         InformacionRideCliente informacionRideCliente = new InformacionRideCliente();
-                        informacionRideCliente.setCalificacion(listaRides.get(i).getCalificacion());
+                        informacionRideCliente.setCalificacion(ride.getCalificacion());
                         informacionRideCliente.setPerfilCliente(perfilCliente);
-                        informacionRideCliente.setDestinoRide(listaRides.get(i).getDireccionDestino());
-                        informacionRideCliente.setFechaRide(listaRides.get(i).getFecha());
-                        informacionRideCliente.setOrigenRide(listaRides.get(i).getDireccionOrigen());
-                        informacionRideCliente.setPrecioRide(listaRides.get(i).getCosto());
+                        informacionRideCliente.setDestinoRide(ride.getDireccionDestino());
+                        informacionRideCliente.setFechaRide(ride.getFecha());
+                        informacionRideCliente.setOrigenRide(ride.getDireccionOrigen());
+                        informacionRideCliente.setPrecioRide(ride.getCosto());
                         listaInformacionRides.add(informacionRideCliente);
 
 
@@ -140,20 +137,14 @@ public class ClienteServiceImpl implements ClienteService{
                         listaInformacionRides.get(i).setPrecioRide(listaRides.get(i).getCosto());
                         listaInformacionRides.add(informacionRideCliente);
                          */
-                        
-
                     }
-
-
-
-
                     response.setResponseBody(listaInformacionRides);
                     response.setStatus((short)200);
                     return response;
                 }
                 //Si cliente no tiene rides
                 else{
-                    response.setStatus((short)400);
+                    response.setStatus((short)404);
                     return response;
                 }
         }
