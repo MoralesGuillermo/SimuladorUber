@@ -1,5 +1,6 @@
 package com.kitsune.kitsune_api.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,8 +77,44 @@ public class ConductorServiceImpl implements ConductorService{
 
     @Override
     public HttpResponse<List<InformacionRide>> obtenerRidesConductor(int conductorId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenerRidesConductor'");
+        HttpResponse<List<InformacionRide>> response = new HttpResponse<>();      
+
+        if (this.conductorRepository.existsById(conductorId)) {
+           Conductor conductor = this.conductorRepository.findById(conductorId).get();
+           List<ConductorVehiculos> listaRides = new  ArrayList<>();
+                listaRides = conductor.getConductorVehiculos();
+        List<InformacionRide> informacionRides = new  ArrayList<>();
+        PerfilConductor perfilConductor = new PerfilConductor();
+        PerfilPersona perfilPersona = new PerfilPersona();
+        perfilPersona.setDni(conductor.getPersona().getDni());
+        perfilPersona.setNombre(conductor.getPersona().getNombre());
+        perfilPersona.setApellido(conductor.getPersona().getApellido());
+        perfilPersona.setEmail(conductor.getPersona().getEmail());
+        perfilPersona.setTelefono(conductor.getPersona().getTelefono());
+        perfilConductor.setPerfilPersona(perfilPersona);
+        perfilConductor.setRating(conductor.getRating());
+    
+
+          for (int i = 0; i < listaRides.size(); i++) {
+            perfilConductor.setMarcaVehiculo(listaRides.get(i).getVehiculo().getMarcavehiculo().getMarcaId());
+            perfilConductor.setColorVehiculo(listaRides.get(i).getVehiculo().getColor());
+            perfilConductor.setPlacaVehiculo(listaRides.get(i).getVehiculo().getPlacas());
+            informacionRides.get(i).setPerfilConductor(perfilConductor);
+            informacionRides.get(i).setFechaRide( conductor.getRides().get(i).getFecha());
+            informacionRides.get(i).setOrigenRide(conductor.getRides().get(i).getDireccionOrigen());
+            informacionRides.get(i).setDestinoRide(conductor.getRides().get(i).getDireccionDestino());
+            informacionRides.get(i).setPrecioRide(conductor.getRides().get(i).getCosto());
+            informacionRides.get(i).setCalificacion(conductor.getRides().get(i).getCalificacion());
+          }
+           response.setStatus((short) 200);
+           response.setResponseBody(informacionRides);
+           return response;
+        }else{
+
+            response.setStatus((short) 404);
+            return null;
+        }
+        
     }
     
 }

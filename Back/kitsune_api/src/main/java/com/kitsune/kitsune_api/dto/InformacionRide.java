@@ -2,6 +2,8 @@ package com.kitsune.kitsune_api.dto;
 
 import java.time.LocalDate;
 
+import com.kitsune.kitsune_api.entities.Direcciones;
+
 import lombok.Data;
 
 @Data
@@ -11,11 +13,11 @@ public class InformacionRide {
 
     private LocalDate fechaRide;
 
-    private String origenRide;
+    private Direcciones origenRide;
 
-    private String destinoRide;
+    private Direcciones destinoRide;
     
-    private String precioRide;
+    private double precioRide;
 
     private int calificacion;
 
