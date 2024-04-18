@@ -25,10 +25,10 @@ public class Direcciones {
 
     private String longitud;
 
-    @OneToMany(mappedBy = "direccionorigen")
+    @OneToMany(mappedBy = "direccionOrigen")
     private List<Rides> origenride;
 
-    @OneToMany(mappedBy = "direcciondestino")
+    @OneToMany(mappedBy = "direccionDestino")
     private List<Rides> destinoride;
 
     @OneToMany(mappedBy = "direccion")

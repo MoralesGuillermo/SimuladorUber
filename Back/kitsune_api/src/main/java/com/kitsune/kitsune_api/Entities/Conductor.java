@@ -2,6 +2,7 @@ package com.kitsune.kitsune_api.entities;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,9 +25,13 @@ public class Conductor {
     @Column(name="conductorid")
     private int conductorId;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "dni", referencedColumnName = "dni")
     private Persona persona;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "userid", referencedColumnName = "userid")
+    private Usuario usuario;
 
     private double rating;
 

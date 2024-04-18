@@ -9,6 +9,4 @@ public class PerfilCliente {
 
     private String username;
 
-    private String telefono;
-
 }
