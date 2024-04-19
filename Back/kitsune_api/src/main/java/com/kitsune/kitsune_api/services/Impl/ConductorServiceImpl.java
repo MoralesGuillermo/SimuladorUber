@@ -92,12 +92,6 @@ public class ConductorServiceImpl implements ConductorService{
         return usuarioRepository.getByUsername(user.getUsername()) != null;
     }
 
-    @Autowired
-    private ConductorRepository conductorRepository;
-
-    @Autowired
-    private VehiculoRepository vehiculoRepository;
-
     @Override
     public HttpResponse<PerfilConductor> verPerfil(int conductorId) {
         HttpResponse<PerfilConductor> response = new HttpResponse<>();

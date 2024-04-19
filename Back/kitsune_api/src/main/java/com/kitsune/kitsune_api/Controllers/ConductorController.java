@@ -27,9 +27,6 @@ public class ConductorController {
     public HttpResponse<Conductor> crearConductor(@RequestBody  NuevoConductorDto nuevoConductor) {
         return conductorServiceImpl.crearConductor(nuevoConductor);
     }
-    
-    @Autowired
-    private ConductorServiceImpl conductorServiceImpl;
 
     @GetMapping("/verPerfilConductor/{conductorId}")
     public HttpResponse<PerfilConductor> verPerfilConductor(@PathVariable int conductorId) {

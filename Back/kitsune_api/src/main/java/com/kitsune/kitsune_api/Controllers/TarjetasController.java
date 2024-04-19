@@ -27,9 +27,6 @@ public class TarjetasController {
     public HttpResponse<TarjetasDTO> crearTarjeta(@RequestBody Tarjetas tarjetas, @RequestParam int clienteId) {
         return this.tarjetasServiceImpl.nuevaTarjeta(tarjetas, clienteId);
     }
-    
-    @Autowired
-    private TarjetasServiceImpl tarjetasServiceImpl;
 
     @DeleteMapping("/eliminarTarjeta/{pan}")
     public HttpResponse<String> eliminarTarjeta(@PathVariable String pan){
