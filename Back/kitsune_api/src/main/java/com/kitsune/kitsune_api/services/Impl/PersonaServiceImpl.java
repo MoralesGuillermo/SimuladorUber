@@ -8,6 +8,7 @@ import com.kitsune.kitsune_api.entities.Persona;
 import com.kitsune.kitsune_api.services.PersonaService;
 
 @Service
+// TODO: ELIMINAR
 public class PersonaServiceImpl implements PersonaService{
 
     @Override

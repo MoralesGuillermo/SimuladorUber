@@ -17,6 +17,7 @@ import java.util.List;
 @Data
 public class Tarjetas {
     
+    
     @ManyToOne()
     @JoinColumn(name = "clienteid", referencedColumnName = "clienteid")
     private Cliente cliente;    

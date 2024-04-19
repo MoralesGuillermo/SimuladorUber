@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,6 +32,10 @@ public class Conductor {
     @OneToOne
     @JoinColumn(name = "dni", referencedColumnName = "dni")
     private Persona persona;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "userid", referencedColumnName = "userid")
+    private Usuario usuario;
 
     private double rating;
 
