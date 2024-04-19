@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kitsune.kitsune_api.dto.HttpResponse;
 import com.kitsune.kitsune_api.dto.PerfilConductor;
-import com.kitsune.kitsune_api.entities.Vehiculo;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import com.kitsune.kitsune_api.dto.NuevoConductorDto;
@@ -33,17 +31,6 @@ public class ConductorController {
     @GetMapping("/verPerfilConductor/{conductorId}")
     public HttpResponse<PerfilConductor> verPerfilConductor(@PathVariable int conductorId) {
         return this.conductorServiceImpl.verPerfil(conductorId);
-    }
-
-    @GetMapping("/verPerfilConductor/{conductorId}")
-    public HttpResponse<PerfilConductor> verPerfilConductor(@PathVariable int conductorId) {
-        return this.conductorServiceImpl.verPerfil(conductorId);
-    }
-
-    @PutMapping("/cambiarVehiculo/{conductorId}")
-    public HttpResponse<String> cambiarVehiculo(@PathVariable int conductorId, 
-                                                @RequestBody Vehiculo vehiculo) {
-        return this.conductorServiceImpl.cambiarVehiculo(conductorId, vehiculo);
     }
     
 }

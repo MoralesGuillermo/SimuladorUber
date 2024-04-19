@@ -42,11 +42,11 @@ public class Rides {
 
     @ManyToOne
     @JoinColumn(name = "direccionorigen", referencedColumnName = "direccionid")
-    private Direcciones direccionorigen;
+    private Direcciones direccionOrigen;
 
     @ManyToOne
     @JoinColumn(name = "direcciondestino", referencedColumnName = "direccionid")
-    private Direcciones direcciondestino;
+    private Direcciones direccionDestino;
 
     @ManyToOne
     @JoinColumn(name="metodoid", referencedColumnName="metodoid")
