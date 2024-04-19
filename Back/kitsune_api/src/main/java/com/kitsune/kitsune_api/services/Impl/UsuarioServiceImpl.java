@@ -87,8 +87,6 @@ public class UsuarioServiceImpl implements UsuarioService{
             response.setStatus((short)400);
             return response;
         }
-
-
     }
 
     public HttpResponse<String> borrarUsuario2(int userId) {
