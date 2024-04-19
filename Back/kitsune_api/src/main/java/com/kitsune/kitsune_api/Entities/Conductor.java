@@ -2,6 +2,9 @@ package com.kitsune.kitsune_api.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,7 +28,8 @@ public class Conductor {
     @Column(name="conductorid")
     private int conductorId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToOne
     @JoinColumn(name = "dni", referencedColumnName = "dni")
     private Persona persona;
 
@@ -41,8 +45,10 @@ public class Conductor {
     @JoinColumn(name="direccionactual", referencedColumnName="direccionid")
     private Direcciones direccion;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "conductor")
     private List<Rides> rides;
+
 
     @OneToMany(mappedBy="conductor")
     private List<ConductorVehiculos> conductorVehiculos;
