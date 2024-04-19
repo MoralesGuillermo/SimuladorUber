@@ -7,6 +7,8 @@ import com.kitsune.kitsune_api.dto.HttpResponse;
 
 import com.kitsune.kitsune_api.dto.UsuarioDto;
 import com.kitsune.kitsune_api.entities.Cliente;
+import com.kitsune.kitsune_api.entities.Conductor;
+import com.kitsune.kitsune_api.entities.Persona;
 import com.kitsune.kitsune_api.entities.Usuario;
 import com.kitsune.kitsune_api.repositories.ClienteRepository;
 import com.kitsune.kitsune_api.repositories.UsuarioRepository;
@@ -22,21 +24,31 @@ public class UsuarioServiceImpl implements UsuarioService{
 
 
         @Override
-        public HttpResponse<Cliente> logon(UsuarioDto user) {
-            HttpResponse<Cliente> response = new HttpResponse<>();
+        public HttpResponse<Persona> logon(UsuarioDto user) {
+            HttpResponse<Persona> response = new HttpResponse<>();
             Usuario expectedUser = usuarioRepository.getByUsername(user.getUsername());
-            if (invalidCredentials(user, expectedUser)){
+            if (invalidCredentials(user, expectedUser) || noUserAsigned(expectedUser) || deletedUser(expectedUser)){
                 response.setStatus((short) 401);
                 return response;
             }
             Cliente cliente = expectedUser.getCliente();
+            Conductor conductor = expectedUser.getConductor();
+            Persona persona = cliente == null ? conductor.getPersona() : cliente.getPersona(); 
             response.setStatus((short) 200);
-            response.setResponseBody(cliente);
+            response.setResponseBody(persona);
             return response;
         }
 
         private boolean invalidCredentials(UsuarioDto user, Usuario expected){
             return (expected == null || !user.getPasskey().equals(expected.getPasskey()));
+        }
+
+        private boolean noUserAsigned(Usuario user){
+            return (user.getCliente() == null && user.getConductor() == null);
+        }
+
+        private boolean deletedUser(Usuario user){
+            return (user.getEstatus() == 'I');
         }
 
     @Override
