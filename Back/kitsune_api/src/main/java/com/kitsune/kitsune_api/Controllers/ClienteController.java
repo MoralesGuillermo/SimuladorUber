@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kitsune.kitsune_api.dto.HttpResponse;
 import com.kitsune.kitsune_api.dto.InformacionRideCliente;
-import com.kitsune.kitsune_api.entities.Rides;
 import com.kitsune.kitsune_api.services.impl.ClienteServiceImpl;
 
 import java.util.List;

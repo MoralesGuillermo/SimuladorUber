@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.kitsune.kitsune_api.dto.ClienteDto;
 import com.kitsune.kitsune_api.dto.HttpResponse;
-import com.kitsune.kitsune_api.dto.InformacionRide;
 import com.kitsune.kitsune_api.dto.InformacionRideCliente;
 import com.kitsune.kitsune_api.dto.PerfilCliente;
 import com.kitsune.kitsune_api.dto.PerfilPersona;
