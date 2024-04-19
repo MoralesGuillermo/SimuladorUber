@@ -94,17 +94,18 @@ public class ConductorServiceImpl implements ConductorService{
         perfilConductor.setPerfilPersona(perfilPersona);
         perfilConductor.setRating(conductor.getRating());
     
-
           for (int i = 0; i < listaRides.size(); i++) {
+            InformacionRide informacionRide = new InformacionRide();
             perfilConductor.setMarcaVehiculo(listaRides.get(i).getVehiculo().getMarcavehiculo().getMarcaId());
             perfilConductor.setColorVehiculo(listaRides.get(i).getVehiculo().getColor());
             perfilConductor.setPlacaVehiculo(listaRides.get(i).getVehiculo().getPlacas());
-            informacionRides.get(i).setPerfilConductor(perfilConductor);
-            informacionRides.get(i).setFechaRide( conductor.getRides().get(i).getFecha());
-            informacionRides.get(i).setOrigenRide(conductor.getRides().get(i).getDireccionOrigen());
-            informacionRides.get(i).setDestinoRide(conductor.getRides().get(i).getDireccionDestino());
-            informacionRides.get(i).setPrecioRide(conductor.getRides().get(i).getCosto());
-            informacionRides.get(i).setCalificacion(conductor.getRides().get(i).getCalificacion());
+            informacionRide.setPerfilConductor(perfilConductor);
+            informacionRide.setFechaRide( conductor.getRides().get(i).getFecha());
+            informacionRide.setOrigenRide(conductor.getRides().get(i).getDireccionOrigen());
+            informacionRide.setDestinoRide(conductor.getRides().get(i).getDireccionDestino());
+            informacionRide.setPrecioRide(conductor.getRides().get(i).getCosto());
+            informacionRide.setCalificacion(conductor.getRides().get(i).getCalificacion());
+            informacionRides.add(informacionRide);
           }
            response.setStatus((short) 200);
            response.setResponseBody(informacionRides);
