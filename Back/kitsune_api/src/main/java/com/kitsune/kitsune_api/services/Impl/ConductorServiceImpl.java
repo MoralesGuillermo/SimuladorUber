@@ -11,7 +11,6 @@ import com.kitsune.kitsune_api.dto.InformacionRide;
 import com.kitsune.kitsune_api.dto.NuevoConductorDto;
 import com.kitsune.kitsune_api.dto.PerfilConductor;
 import com.kitsune.kitsune_api.dto.PerfilPersona;
-import com.kitsune.kitsune_api.dto.VehiculoDto;
 import com.kitsune.kitsune_api.entities.Conductor;
 import com.kitsune.kitsune_api.entities.ConductorVehiculos;
 import com.kitsune.kitsune_api.entities.Persona;
@@ -19,7 +18,6 @@ import com.kitsune.kitsune_api.entities.Vehiculo;
 import com.kitsune.kitsune_api.repositories.ConductorRepository;
 import com.kitsune.kitsune_api.entities.Usuario;
 import com.kitsune.kitsune_api.entities.compisite_keys.ConductorVehiculoKey;
-import com.kitsune.kitsune_api.repositories.ConductorRepository;
 import com.kitsune.kitsune_api.repositories.ConductorVehiculosRepository;
 import com.kitsune.kitsune_api.repositories.PersonaRepository;
 import com.kitsune.kitsune_api.repositories.UsuarioRepository;
@@ -134,9 +132,51 @@ public class ConductorServiceImpl implements ConductorService{
     }
 
     @Override
-    public HttpResponse<String> cambiarVehiculo(int conductorId, VehiculoDto vehiculoDto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cambiarVehiculo'");
+    public HttpResponse<String> cambiarVehiculo(int conductorId, Vehiculo vehiculo) {
+        HttpResponse<String> response = new HttpResponse<>();
+        if (this.conductorRepository.existsById(conductorId)) {
+            Conductor conductor = this.conductorRepository.findById(conductorId).get();
+            List<ConductorVehiculos> conductorVehiculos = conductor.getConductorVehiculos();
+            char estado = 'A';
+
+            for (ConductorVehiculos conductorVehiculo: conductorVehiculos) {
+                if (conductorVehiculo.getEstatus() == estado) {
+                    conductorVehiculo.setEstatus('I');
+
+                    this.conductorVehiculosRepository.save(conductorVehiculo);
+                }
+            }
+
+            String vin = vehiculo.getVin();
+            if (this.vehiculoRepository.existsById(vin)) {
+                Vehiculo vehiculoAsignar = this.vehiculoRepository.findById(vin).get();
+                List<ConductorVehiculos> conductorVehiculoAsignar = vehiculoAsignar.getConductorVehiculos();
+                
+                for (ConductorVehiculos conductorVehiculosAsig : conductorVehiculoAsignar) {
+                    if (conductorVehiculosAsig.getConductorVehiculoKey().getConductorId() == conductorId && conductorVehiculosAsig.getConductorVehiculoKey().getVehiculoVin() == vin) {
+                        conductorVehiculosAsig.setEstatus('A');;
+
+                        this.conductorVehiculosRepository.save(conductorVehiculosAsig);
+
+                        //VehiculoDto vehiculoDto = new VehiculoDto();
+
+                        //vehiculoDto.setVin(vehiculo.getVin());
+                        //vehiculoDto.setPlacas(vehiculo.getPlacas());
+                        //vehiculoDto.setColor(vehiculo.getColor());
+                        //vehiculoDto.setMarcavehiculo(vehiculo.getMarcavehiculo());
+
+                        response.setStatus((short) 200);
+                        response.setResponseBody("Vehiculo cambiado con exito");
+                        return response;
+                    }
+                }
+            }
+            response.setStatus((short) 404);
+            return response;
+
+        }
+        response.setStatus((short) 404);
+        return response;
     }
 
     @Override
