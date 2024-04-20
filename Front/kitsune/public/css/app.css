@@ -68,6 +68,77 @@
     left: 15vw;
 }
 
+#solicitudPeticionDiv{
+    width: 100vw;
+    height:25vh; 
+    background-color: rgb(255, 190, 69);
+    display: flexbox;
+    border: 2px solid gray;
+}
+
+#solicitudOrigin{
+    position: relative;
+    border-radius: 10px;
+    width: 250px;
+    cursor: pointer;
+    left: 5vw;
+    top: 10vh;
+}
+
+#solicitudDestino{
+    position: relative;
+    border-radius: 10px;
+    width: 250px;
+    cursor: pointer;
+    left: 5vw;
+    top: 10vh;
+    margin-left: 3vw;
+}
+
+#solicitudPrecio{
+    position: relative;
+    border-radius: 10px;
+    width: 150px;
+    left: 5vw;
+    top: 10vh;
+    margin-left: 3vw;
+}
+
+#solicitudCancelBtn{
+    border-radius: 10px;
+    position: relative;
+    background-color: red;
+    color: white;
+    font-weight: 700;
+    left: 20vw;
+    top: 10vh;;
+}
+
+#solicitudHacerBtn{
+    border-radius: 10px;
+    position: relative;
+    background-color: gray;
+    color: white;
+    font-weight: 700;
+    left: 20vw;
+    top: 10vh;;
+}
+
+#mensajeEspera{
+    position: relative;
+    color: gray;
+    top: 25vh;
+}
+
+#esperaRegresarBtn{
+    position: absolute;
+    top: 45vh;
+    right: 49vw;
+}
+
+
+
+
 .topNav{
     background-color: orange;
     color: white;
@@ -83,3 +154,45 @@
     margin-left: 7px;
     font-weight: 600;
 }
+
+.blink_me {
+    animation: blinker 3s linear infinite;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0.3;
+    }
+  }
+
+/*GOOGLE MAPS API MAPS*/
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/** 
+ * Always set the map height explicitly to define the size of the div element
+ * that contains the map. 
+ */
+ #mapsDiv {
+    height: 70vh;
+    width: 100vw;
+    display:  flexbox;
+  }
+  
+  #response-container {
+    background-color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    padding: 0 0.5em;
+    font: 400 18px Roboto, Arial, sans-serif;
+    overflow: hidden;
+    overflow: auto;
+    max-height: 50%;
+    max-width: 90%;
+    font-size: small;
+  }
+
