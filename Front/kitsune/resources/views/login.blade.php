@@ -13,13 +13,22 @@
     <nav class="topNav" id="loginNavbar">
         <a href=""><p class="h4" id="kitsuneTitle">kitsune</p></a>
     </nav>
-    <form class="container" id="loginBox" >
+    <form class="container" id="loginBox" action="{{route('logon')}}" method="GET">
         <p class="h2" id="loginTitle">Log In</p>
         <p id="loginNuevoRegistro">¿Eres nuevo? <a href="">Registrate aquí</a></p>
-        <input type="text" id="usernameInput" class="form-control" placeholder="Username">
-        <input type="password" class="form-control" id="passwordInput" placeholder="Password">
+        <input type="text" name="username" id="usernameInput" class="form-control" placeholder="Username">
+        <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Password">
         <button id="loginSubmitBtn" type="submit">Log in</button>
         <a href=""><button id="loginCancelBtn">Return</button></a>
     </form>
+    @php
+        try{
+            if ($failed){
+                echo "<div id='failedAuth'>
+                    <p>Usuario o contraseña incorrectos!</p>
+                </div>";
+            }
+        }catch (Exception $e){}
+    @endphp
 </body>
 </html>
