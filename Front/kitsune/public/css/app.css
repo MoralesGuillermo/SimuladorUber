@@ -14,13 +14,13 @@
 #usernameInput{
     position: relative;
     border-radius: 25px;
-    top: 15vh;
+    top: 17vh;
 }
 
 #passwordInput{
     position: relative;
     border-radius: 25px;
-    top: 17vh;
+    top: 19vh;
 }
 
 #loginTitle{
@@ -34,7 +34,7 @@
 
 #loginSubmitBtn{
     position: relative;
-    top:19vh;
+    top:21vh;
     left:12vw;
     border-radius: 10px;
     background-color: orange;
@@ -43,9 +43,16 @@
     border: 1px solid black;
 }
 
+#failedAuth{
+    color: red;
+    position: absolute;
+    top: 350px;
+    left:560px;
+}
+
 #loginCancelBtn{
     position: relative;
-    top: 19vh;
+    top: 21vh;
     left: 3vw;
     border-radius: 10px;
     background-color: red;
@@ -123,6 +130,8 @@
     left: 20vw;
     top: 10vh;;
 }
+
+
 
 #mensajeEspera{
     position: relative;
