@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kitsune.kitsune_api.dto.HttpResponse;
-
+import com.kitsune.kitsune_api.dto.PerfilCliente;
 import com.kitsune.kitsune_api.dto.UsuarioDto;
 import com.kitsune.kitsune_api.entities.Cliente;
 import com.kitsune.kitsune_api.entities.Conductor;
 import com.kitsune.kitsune_api.entities.Persona;
 import com.kitsune.kitsune_api.entities.Usuario;
-import com.kitsune.kitsune_api.repositories.ClienteRepository;
+
 import com.kitsune.kitsune_api.repositories.UsuarioRepository;
 import com.kitsune.kitsune_api.services.UsuarioService;
 
@@ -19,16 +19,13 @@ public class UsuarioServiceImpl implements UsuarioService{
         @Autowired
         private UsuarioRepository usuarioRepository;
 
-        @Autowired
-        private ClienteRepository clienteRepository;
-
 
         @Override
         public HttpResponse<Persona> logon(UsuarioDto user) {
             HttpResponse<Persona> response = new HttpResponse<>();
             Usuario expectedUser = usuarioRepository.getByUsername(user.getUsername());
-            if (invalidCredentials(user, expectedUser) || noUserAsigned(expectedUser) || deletedUser(expectedUser)){
-                response.setStatus((short) 401);
+            if (invalidCredentials(user, expectedUser) /*|| noUserAsigned(expectedUser) || deletedUser(expectedUser)*/){
+                response.setStatus((short) 400);
                 return response;
             }
             Cliente cliente = expectedUser.getCliente();
@@ -43,13 +40,13 @@ public class UsuarioServiceImpl implements UsuarioService{
             return (expected == null || !user.getPasskey().equals(expected.getPasskey()));
         }
 
-        private boolean noUserAsigned(Usuario user){
+        /*private boolean noUserAsigned(Usuario user){
             return (user.getCliente() == null && user.getConductor() == null);
         }
 
         private boolean deletedUser(Usuario user){
             return (user.getEstatus() == 'I');
-        }
+        }*/
 
     @Override
     public HttpResponse<String> borrarUsuario(int userId) {

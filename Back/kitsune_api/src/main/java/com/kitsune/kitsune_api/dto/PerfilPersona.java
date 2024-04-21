@@ -15,4 +15,7 @@ public class PerfilPersona {
 
     private String telefono;
 
+    private int edad;
+
+    private char genero;
 }
