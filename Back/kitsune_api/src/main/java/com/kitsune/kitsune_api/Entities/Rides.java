@@ -1,5 +1,6 @@
 package com.kitsune.kitsune_api.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,11 +43,11 @@ public class Rides {
     @JoinColumn(name = "conductorid", referencedColumnName = "conductorid")
     private Conductor conductor;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "direccionorigen", referencedColumnName = "direccionid")
     private Direcciones direccionOrigen;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "direcciondestino", referencedColumnName = "direccionid")
     private Direcciones direccionDestino;
 

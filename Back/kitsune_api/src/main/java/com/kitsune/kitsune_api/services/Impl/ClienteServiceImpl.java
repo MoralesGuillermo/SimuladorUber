@@ -34,12 +34,15 @@ public class ClienteServiceImpl implements ClienteService{
 
     @Override
     public HttpResponse<Cliente> crearCliente(ClienteDto clienteDto){
+        System.out.println(clienteDto);
         HttpResponse<Cliente> response = new HttpResponse<>();
         if (isIncomplete(clienteDto)){   // Los datos no se enviaron completos
             response.setStatus((short)400);
+            System.out.println("CLIENTE INCOMPLETO");
         }
         else if (personaAlreadyExists(clienteDto) || usuarioAlreadyExists(clienteDto)){ // Se usó un dni o un usuario ya existente
             response.setStatus((short) 406);
+            System.out.println("PERSONA YA EXISTE");
         }else {
             Cliente savedCliente = saveCliente(clienteDto);
             response.setStatus((short) 200);
@@ -86,6 +89,7 @@ public class ClienteServiceImpl implements ClienteService{
             perfilPersona.setTelefono(personaCliente.getTelefono());
             perfilPersona.setEdad(personaCliente.getEdad());
             perfilPersona.setGenero(personaCliente.getGenero());
+            perfilCliente.setClienteId(clienteId);
             perfilCliente.setPerfilPersona(perfilPersona); 
             perfilCliente.setUsername(cliente.getUsuario().getUsername());
             perfilCliente.setEstatus(usuarioCLiente.getEstatus());

@@ -28,7 +28,6 @@ private RidesServiceImpl ridesServiceImpl;
 
     @PostMapping("/solicitar")
     public HttpResponse<RideDto> solicitarRide(@RequestBody RideDto ride) {
-        System.out.println(ride);
         return this.ridesServiceImpl.solicitarRide(ride);
     }
 

@@ -19,8 +19,8 @@
         <input type="text" name="username" id="usernameInput" class="form-control" placeholder="Username">
         <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Password">
         <button id="loginSubmitBtn" type="submit">Log in</button>
-        <a href="{{route('landing')}}"><button id="loginCancelBtn">Return</button></a>
     </form>
+    <a  id="loginCancelAnchor" href="{{route('landing')}}"><button id="loginCancelBtn">Regresar</button></a>
     @php
         try{
             if ($failed){
