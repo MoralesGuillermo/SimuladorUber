@@ -8,6 +8,8 @@ import lombok.Data;
 @Data
 public class RideDto {
     
+    private int rideId;
+
     private double distancia;
 
     private double costo;
