@@ -13,7 +13,7 @@
 </head>
 <body>
     <nav class="topNav" id="loginNavbar">
-        <a href=""><p class="h4" id="kitsuneTitle">kitsune</p></a>
+        <a href="{{ route('landing') }}"><p class="h4" id="kitsuneTitle">kitsune</p></a>
     </nav>
     <div id="mapsDiv">
         <script async
@@ -26,7 +26,7 @@
         <input id="solicitudDestino" type="text" readonly placeholder="Destino">
         <input id="solicitudPrecio" type="text" readonly placeholder="Precio">
         <button id="solicitudHacerBtn" type="submit" disabled>Confirmar</button>
-        <a href=""><button id="solicitudCancelBtn">Cancelar</button></a>
+        <a href="#" onclick="history.go(-1); return false;"><button id="solicitudCancelBtn">Cancelar</button></a>
         
     </form>
 </body>

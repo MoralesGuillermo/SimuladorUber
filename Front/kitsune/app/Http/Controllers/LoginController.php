@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
+
     public function auth(Request $request){
         $username = $request->input('username');
         $password = $request->input('password');
@@ -20,7 +21,13 @@ class LoginController extends Controller
         $data = $response->getBody();
         $jsonResponse = json_decode($data, true); // Decodificamos el body para poder usarlo como valores
         if ($jsonResponse["status"] == 200){
-            echo "INGRESO EXITOSO";
+            $responseBody = $jsonResponse['responseBody'];
+            $cliente = $responseBody['cliente'];
+            $clienteId = $cliente['clienteId'];
+            $responseCliente = $client->get("http://localhost:8081/kitsune/cliente/perfil/".$clienteId);
+            $responseData = json_decode($responseCliente->getBody());
+            $perfilcliente = $responseData->responseBody;
+            return view('perfil', compact('perfilcliente'));
         }else{
             return $this->authFail();
         }

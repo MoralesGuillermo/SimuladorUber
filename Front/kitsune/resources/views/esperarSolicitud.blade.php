@@ -10,9 +10,10 @@
     <title>Esperando confirmación | Kitsune</title>
 </head>
 <body>
-    <nav class="topNav" id="loginNavbar">
-        <a href=""><p class="h4" id="kitsuneTitle">kitsune</p></a>
+    <nav class="topNav" id="loginNavbar" style="background-color: orange;color: white;position: absoute;width: 100vw;height: 7vh;text-align: right;padding: 1%;">
+        <a href="{{ route('landing') }}"><p class="h4" id="kitsuneTitle" style=" position: absolute;top: 10px;left: 3vw;color: white;">kitsune</p></a>
     </nav>
+
     <div class="d-flex justify-content-center">
         <p class="h1 blink_me" id="mensajeEspera">Esperando que un conductor acepte su viaje...</p>
         <a href=""><button class="btn btn-danger" id="esperaRegresarBtn">Cancelar</button></a>
