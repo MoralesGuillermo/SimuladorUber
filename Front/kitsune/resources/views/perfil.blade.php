@@ -79,6 +79,15 @@
                         <p> </p>
                         <a class="btn btn-warning"  href="{{ route('password', ['clienteId' => $clienteId]) }}">Cambiar Contraseña</a>
                         <a class="btn btn-success"  href="{{ route('nuevaTarjeta', ['clienteId' => $clienteId]) }}">Agregar Tarjeta</a></button>
+                        
+                        <!--Cambio hecho por Danny, para agregar el boton borrar usuario -->
+                        <form method="POST" action="{{ route('borrarUsuario', ['clienteId' => $clienteId]) }}" style="margin-top: 10%">
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" class="btn btn-warning">Borrar usuario</button>
+                        </form>
+                    </ul>
+                    
                     </ul>
             </div>
         </section>
