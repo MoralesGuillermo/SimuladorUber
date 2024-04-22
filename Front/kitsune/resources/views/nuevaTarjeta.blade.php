@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+     <title>Agregar Tarjeta | Kitsune</title>
 </head>
 <body style="background-color: #ffe6cd;">
     <nav class="topNav" id="loginNavbar" style="background-color: orange;color: white;position: absoute;width: 100vw;height: 7vh;text-align: right;padding: 1%;">
-        <a href=""><p class="h4" id="kitsuneTitle" style=" position: absolute;top: 10px;left: 3vw;color: white;">kitsune</p></a>
+        <a href="{{ route('landing') }}"><p class="h4" id="kitsuneTitle" style=" position: absolute;top: 10px;left: 3vw;color: white;">kitsune</p></a>
     </nav>
     <div style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);background-color: white; border-radius: 10px; margin-top: 10%;margin-left: 33%; width:max-content; display: flex;justify-content: center; border-color: orange;">
 
