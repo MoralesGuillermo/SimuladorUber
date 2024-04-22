@@ -48,6 +48,7 @@ public class ClienteServiceImpl implements ClienteService{
         return response;
     }
 
+
     private boolean isIncomplete(ClienteDto clienteDto){
         return (clienteDto == null || clienteDto.getPersona() == null || clienteDto.getUsuario() == null);
     } 
@@ -85,6 +86,7 @@ public class ClienteServiceImpl implements ClienteService{
             perfilPersona.setTelefono(personaCliente.getTelefono());
             perfilPersona.setEdad(personaCliente.getEdad());
             perfilPersona.setGenero(personaCliente.getGenero());
+            perfilCliente.setClienteId(clienteId);
             perfilCliente.setPerfilPersona(perfilPersona); 
             perfilCliente.setUsername(cliente.getUsuario().getUsername());
             perfilCliente.setEstatus(usuarioCLiente.getEstatus());

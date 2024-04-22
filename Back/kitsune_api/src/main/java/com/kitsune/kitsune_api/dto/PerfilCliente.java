@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class PerfilCliente {
 
+    private int clienteId;
+    
     private PerfilPersona perfilPersona;
 
     private String username;
