@@ -217,5 +217,18 @@ public class RidesServiceImpl implements RidesService{
         DecimalFormat df = new DecimalFormat("####.##");
         String rounderNumerString = df.format(nonRoundedValue);
         return Double.parseDouble(rounderNumerString);
+    }
+
+    @Override
+    public HttpResponse<Boolean> fueAceptado(int rideId) {
+        Rides ride = this.ridesRepository.findById(rideId).get();
+        HttpResponse<Boolean> response = new HttpResponse<>();
+        if (ride.getEstatus() == 'A'){
+            response.setStatus((short) 200);
+            response.setResponseBody(true);
+            return response;
+        }
+        response.setStatus((short) 400);
+        return response;
     } 
 }

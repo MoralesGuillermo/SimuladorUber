@@ -58,4 +58,23 @@ class RidesController extends Controller
         
     }
 
+    public function viewSolicitar(Request $request){
+        $clienteId = $request->input("clienteId");
+        return view('solicitarRide', compact('clienteId'));
+    }
+
+    public function cancelar($rideId, $clienteId){
+        $client = new Client();
+        $requestUrl = 'localhost:8081/kitsune/ride/cancelar/'.$rideId;
+        $response = $client->put($requestUrl);
+        return redirect('/perfil/'.$clienteId);   
+    }
+
+    public function preguntarRideAceptado($rideId){
+        $client = new Client();
+        $requestUrl = 'localhost:8081/kitsune/ride/preguntar-aceptado/'.$rideId;
+        $response = $client->get($requestUrl);
+        return $response->getBody();
+    }
+
 }
