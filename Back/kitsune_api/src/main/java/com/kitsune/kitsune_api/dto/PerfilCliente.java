@@ -9,4 +9,5 @@ public class PerfilCliente {
 
     private String username;
 
+    private char estatus;
 }
