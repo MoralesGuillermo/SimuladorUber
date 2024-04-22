@@ -32,6 +32,9 @@ Route::get('/crear', function () {
     
 Route::post('/guardar', [UsuarioController::class, 'crear'])->name('crear');
 
+    Route::get('/password/{clienteId}',[UsuarioController::class, 'password'])->name('password');
+
+    Route::put('/password/save/{clienteId}', [UsuarioController::class, 'savepassword'])->name('savepassword');
 Route::get('/password', function () {
     return view('cambiarPassword');
 })->name('cambiarPassword');
@@ -64,7 +67,6 @@ Route::get('/mostrarRides', function () {
     return view('mostrarRidesCliente');
 })->name('mostrarRides');
 
-
 Route::post('/crearTarjeta', [TarjetaController::class, 'crearTarjeta'])->name('crearTarjeta');
 
 Route::get('/make-solicitar-ride', [RidesController::class, 'solicitarRide'])->name('solicitarNuevoRide');
@@ -74,3 +76,9 @@ Route::get('/consultar-precio/{distancia}', [RidesController::class, 'consultarP
 Route::get('/calificar/{rideId}', [RidesController::class, 'vistaCalificar'])->name('vistaCalificar');
 
 Route::get('/calificacion', [RidesController::class, 'calificar'])->name('calificar');
+
+Route::get('/mostrarRidesCliente/{clienteId}',[UsuarioController::class, 'mostrarRidesClientes'])->name('mostraRidesCliente');
+
+Route::put('/borrarUsuario/{clienteId}',[UsuarioController::class, 'borrarUsuario'])->name('borrarUsuario');
+
+Route::get('peticion-viaje-aceptado/{rideId}', [RidesController::class, 'preguntarRideAceptado']);

@@ -17,5 +17,8 @@ public interface RidesService {
     public HttpResponse<String> finalizarRide(int rideId);
 
     public HttpResponse<Double> solicitarPrecio(float distancia);
+
+    public HttpResponse<Boolean> fueAceptado(int rideId);
+    
     
 }

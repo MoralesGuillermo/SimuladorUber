@@ -27,7 +27,7 @@ class LoginController extends Controller
             $responseCliente = $client->get("http://localhost:8081/kitsune/cliente/perfil/".$clienteId);
             $responseData = json_decode($responseCliente->getBody());
             $perfilcliente = $responseData->responseBody;
-            return view('perfil', compact('perfilcliente'));
+            return view('perfil', compact('perfilcliente'), compact('clienteId'));
         }else{
             return $this->authFail();
         }

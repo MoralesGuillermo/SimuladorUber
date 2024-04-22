@@ -55,6 +55,12 @@ private RidesServiceImpl ridesServiceImpl;
     public HttpResponse<Double> solicitarPrecio(@PathVariable float distancia) {
         return this.ridesServiceImpl.solicitarPrecio(distancia);
     }
+
+    @GetMapping("/preguntar-aceptado/{rideId}")
+    public HttpResponse<Boolean> getMethodName(@PathVariable int rideId) {
+        return this.ridesServiceImpl.fueAceptado(rideId);
+    }
+    
     
 
 }

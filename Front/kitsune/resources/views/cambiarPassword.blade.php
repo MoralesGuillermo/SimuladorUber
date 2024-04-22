@@ -16,17 +16,19 @@
 
         
 
-        <form style="padding: 50px; padding-block: 20px;">
+        <form style="padding: 50px; padding-block: 20px;" action="{{route('savepassword', ['clienteId' => $clienteId])}}" method="POST">
+            @csrf
+            @method('PUT')      
             <p class="h3" style="color: rgb(255, 166, 2);padding: 50px; padding-block: 20px;" >Cambio de contraseña</p><br> 
             <label style="padding: 10px;color: rgb(248, 131, 6);" for="usuario">Usuario:</label> <br>
-            <input class="form-control" style="padding: 10px ; border-radius: 25px;" type="text" id="usuario" name="usuario" value="NombreDeUsuarioMaziso"><br>
+            <input class="form-control" style="padding: 10px ; border-radius: 25px;" type="text" id="usuario" name="usuario" value="{{$perfilcliente->username}}" readonly><br>
     
             <label style="padding: 10px;color: rgb(248, 131, 6);;" for="contrasena">Nueva Contraseña:</label><br>
-            <input class="form-control" style="padding: 10px;border-radius: 25px;" type="password" id="contrasena" name="contrasena" value="ContraseñaMaziso2"><br>
+            <input class="form-control" style="padding: 10px;border-radius: 25px;" type="password" id="password" name="password" ><br>
     
             <div class="buttons" style="padding: 10px">
                 <button class="btn" style="background-color: #ffe6cd;border-color: rgb(159, 152, 145);"><a href="#" onclick="history.go(-1); return false;">Cancelar</a></button>
-                <button class="btn" style="background-color: #ffe6cd;border-color: rgb(159, 152, 145);"><a href="{{ route('login') }}">Confirmar</a></button>
+                <button class="btn" style="background-color: #ffe6cd;border-color: rgb(159, 152, 145);">Confirmar</a></button>
             </div>
         </form>
   </div>

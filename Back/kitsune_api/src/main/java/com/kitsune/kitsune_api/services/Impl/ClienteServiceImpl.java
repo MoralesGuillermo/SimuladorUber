@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kitsune.kitsune_api.dto.ClienteDto;
 import com.kitsune.kitsune_api.dto.HttpResponse;
 import com.kitsune.kitsune_api.dto.InformacionRideCliente;
+import com.kitsune.kitsune_api.dto.InformacionRideClienteParaFront;
 import com.kitsune.kitsune_api.dto.PerfilCliente;
 import com.kitsune.kitsune_api.dto.PerfilPersona;
 import com.kitsune.kitsune_api.entities.Cliente;
@@ -144,6 +145,51 @@ public class ClienteServiceImpl implements ClienteService{
                         listaInformacionRides.get(i).setPrecioRide(listaRides.get(i).getCosto());
                         listaInformacionRides.add(informacionRideCliente);
                          */
+                    }
+                    response.setResponseBody(listaInformacionRides);
+                    response.setStatus((short)200);
+                    return response;
+                }
+                //Si cliente no tiene rides
+                else{
+                    response.setStatus((short)404);
+                    return response;
+                }
+        }
+        //Si no existe el cliente
+        else{
+            response.setStatus((short)400);
+            return response;
+        }
+    }
+
+    public HttpResponse<List<InformacionRideClienteParaFront>> mostrarRidesClienteParaFront(int clienteId) {
+        HttpResponse<List<InformacionRideClienteParaFront>> response = new HttpResponse<>();
+        //Si existe el cliente:
+        if (this.clienteRepository.existsById(clienteId)){
+            Cliente cliente = this.clienteRepository.findById(clienteId).get();
+            //Si cliente tiene rides
+                if (null != cliente.getRides()) {
+
+                    List<Rides> listaRides = cliente.getRides();
+                    
+
+                    List<InformacionRideClienteParaFront> listaInformacionRides = new ArrayList<>();
+                   String usuario = cliente.getUsuario().getUsername();
+                    for (Rides ride: listaRides) {
+                        InformacionRideClienteParaFront informacionRideClienteParaFront = new InformacionRideClienteParaFront();
+                        informacionRideClienteParaFront.setCalificacion(ride.getCalificacion());
+                        informacionRideClienteParaFront.setUsername(usuario);
+                        informacionRideClienteParaFront.setDestinoRideLatitud(ride.getDireccionDestino().getLatitud());
+                        informacionRideClienteParaFront.setDestinoRideLongitud(ride.getDireccionDestino().getLongitud());
+                        informacionRideClienteParaFront.setFechaRide(ride.getFecha());
+                        informacionRideClienteParaFront.setOrigenRideLatitud(ride.getDireccionOrigen().getLatitud());
+                        informacionRideClienteParaFront.setOrigenRideLongitud(ride.getDireccionOrigen().getLongitud());
+                        informacionRideClienteParaFront.setPrecioRide(ride.getCosto());
+                        listaInformacionRides.add(informacionRideClienteParaFront);
+
+
+                    
                     }
                     response.setResponseBody(listaInformacionRides);
                     response.setStatus((short)200);

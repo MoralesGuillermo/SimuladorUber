@@ -15,7 +15,11 @@ import com.kitsune.kitsune_api.entities.Conductor;
 import com.kitsune.kitsune_api.entities.Direcciones;
 import com.kitsune.kitsune_api.entities.Parametros;
 import com.kitsune.kitsune_api.entities.Rides;
+<<<<<<< HEAD
 import com.kitsune.kitsune_api.entities.SolicitudRide;
+=======
+import com.kitsune.kitsune_api.entities.SolicitarRide;
+>>>>>>> 69ee8556ca34e8f115d0b4c89f80b6d18d8824cc
 import com.kitsune.kitsune_api.repositories.ClienteRepository;
 import com.kitsune.kitsune_api.repositories.ConductorRepository;
 import com.kitsune.kitsune_api.repositories.DireccionesRepository;
@@ -60,6 +64,7 @@ public class RidesServiceImpl implements RidesService{
             Cliente clienteRide = this.clienteRepository.findById(ride.getClienteid()).get();
                 Rides nvoRide = new Rides();
                 nvoRide.setCliente(clienteRide);
+<<<<<<< HEAD
                 nvoRide.setDireccionOrigen(ride.getOrigen());
                 nvoRide.setDireccionDestino(ride.getDestino());
                 nvoRide.setCosto(ride.getCosto());
@@ -69,6 +74,18 @@ public class RidesServiceImpl implements RidesService{
                 Rides svdRide = this.ridesRepository.save(nvoRide);
                 askDrivers(nvoRide.getRideId());
                 ride.setRideId(svdRide.getRideId());
+=======
+                nvoRide.setCosto(ride.getCosto());
+                nvoRide.setEstatus('P');
+                nvoRide.setDireccionOrigen(ride.getOrigen());
+                nvoRide.setDireccionDestino(ride.getDestino());
+                nvoRide.setDistancia(ride.getDistancia());
+                nvoRide.setFecha(LocalDate.now());
+                Rides svdRide = ridesRepository.save(nvoRide);
+                ride.setRideId(svdRide.getRideId());
+                askRiders(svdRide.getRideId());
+
+>>>>>>> 69ee8556ca34e8f115d0b4c89f80b6d18d8824cc
                 response.setStatus((short) 200);
                 response.setResponseBody(ride);
                 return response;
@@ -81,6 +98,7 @@ public class RidesServiceImpl implements RidesService{
         return (ride == null || ride.getClienteid() == 0);
     } 
 
+<<<<<<< HEAD
     private void askDrivers(int rideId){
         /**Llenar las solicitudes con los conductores mas cercanos */
         List<Conductor> conductores = (List<Conductor>) this.conductorRepository.findAll();
@@ -92,6 +110,16 @@ public class RidesServiceImpl implements RidesService{
                 solicitudRideRepository.save(solicitudRide);
             }
         }  
+=======
+    private void askRiders(int rideId){
+        List<Conductor> conductores = (List<Conductor>) this.conductorRepository.findAll();
+        for (Conductor conductor: conductores){
+            SolicitarRide solicitud = new SolicitarRide();
+            solicitud.setRideId(rideId);
+            solicitud.setConductorId(conductor.getConductorId());
+            solicitudRideRepository.save(solicitud);
+        }
+>>>>>>> 69ee8556ca34e8f115d0b4c89f80b6d18d8824cc
     }
 
 
@@ -221,5 +249,18 @@ public class RidesServiceImpl implements RidesService{
         DecimalFormat df = new DecimalFormat("####.##");
         String rounderNumerString = df.format(nonRoundedValue);
         return Double.parseDouble(rounderNumerString);
+    }
+
+    @Override
+    public HttpResponse<Boolean> fueAceptado(int rideId) {
+        Rides ride = this.ridesRepository.findById(rideId).get();
+        HttpResponse<Boolean> response = new HttpResponse<>();
+        if (ride.getEstatus() == 'A'){
+            response.setStatus((short) 200);
+            response.setResponseBody(true);
+            return response;
+        }
+        response.setStatus((short) 400);
+        return response;
     } 
 }
