@@ -63,10 +63,13 @@
     left:560px;
 }
 
+
+#loginCancelAnchor{
+    position: absolute;
+    top: 62vh;
+    left: 54vw;
+}
 #loginCancelBtn{
-    position: relative;
-    top: 21vh;
-    left: 3vw;
     border-radius: 10px;
     background-color: red;
     color: white;

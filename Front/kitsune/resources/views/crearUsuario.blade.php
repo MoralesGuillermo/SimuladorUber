@@ -38,7 +38,7 @@
       <div class="col-md-6">
         <div class="form-container">
           <h2 class="text-center form-title mb-4">Registro de Nuevo Usuario - Kitsune</h2>
-          <form method="POST" action='{{route('crear')}}'>
+          <form method="POST" action="{{route('crear')}}">
             @csrf
             @method('POST')
             <div class="mb-3">

@@ -1,5 +1,6 @@
 package com.kitsune.kitsune_api.services.impl;
 
+import java.sql.Driver;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.List;
@@ -11,6 +12,7 @@ import com.kitsune.kitsune_api.dto.HttpResponse;
 import com.kitsune.kitsune_api.dto.RideDto;
 import com.kitsune.kitsune_api.entities.Cliente;
 import com.kitsune.kitsune_api.entities.Conductor;
+import com.kitsune.kitsune_api.entities.Direcciones;
 import com.kitsune.kitsune_api.entities.Parametros;
 import com.kitsune.kitsune_api.entities.Rides;
 import com.kitsune.kitsune_api.entities.SolicitarRide;
@@ -57,6 +59,7 @@ public class RidesServiceImpl implements RidesService{
         if(this.clienteRepository.existsById(ride.getClienteid())){
             Cliente clienteRide = this.clienteRepository.findById(ride.getClienteid()).get();
                 Rides nvoRide = new Rides();
+          
                 nvoRide.setCliente(clienteRide);
                 nvoRide.setCosto(ride.getCosto());
                 nvoRide.setEstatus('P');
