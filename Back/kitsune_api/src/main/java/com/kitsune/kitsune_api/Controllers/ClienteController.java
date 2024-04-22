@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kitsune.kitsune_api.dto.ClienteDto;
 import com.kitsune.kitsune_api.dto.HttpResponse;
 import com.kitsune.kitsune_api.dto.InformacionRideCliente;
+import com.kitsune.kitsune_api.dto.InformacionRideClienteParaFront;
 import com.kitsune.kitsune_api.dto.PerfilCliente;
 import com.kitsune.kitsune_api.entities.Cliente;
 import com.kitsune.kitsune_api.services.impl.ClienteServiceImpl;
@@ -43,7 +44,6 @@ public class ClienteController{
         return this.clienteServiceImpl.verPerfil(clienteId);
     }
     
-
     @GetMapping("/mostrarRides")
     @Operation(summary = "Muestra los rides de un cliente.")
     @ApiResponses(value = {
@@ -67,12 +67,20 @@ public class ClienteController{
     public HttpResponse<Cliente> crearCliente(@RequestBody ClienteDto clienteDto) {
         return this.clienteServiceImpl.crearCliente(clienteDto);
     }
+    
+    @GetMapping("/perfil")
+    public HttpResponse<PerfilCliente> verPerfil2(@RequestParam int clienteId) {
+        return this.clienteServiceImpl.verPerfil(clienteId);
+    }
         
     @GetMapping("/test")
     @Operation(summary = "Prueba de conexión a la API.")
     public String testAPI() {
         return "Se realizo la conexion de manera exitosa";
     }
+
+    
+    }
     
 
-}
+

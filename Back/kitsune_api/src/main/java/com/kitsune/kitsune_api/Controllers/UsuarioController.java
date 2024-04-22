@@ -4,6 +4,7 @@ package com.kitsune.kitsune_api.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,15 +35,13 @@ public class UsuarioController {
         return this.usuarioServiceImpl.logon(user);
     }
 
-
-    @DeleteMapping("/eliminar")
+    @PutMapping("/eliminar")
     @Operation(summary = "Elimina un usuario por su ID.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuario eliminado correctamente."),
             @ApiResponse(responseCode = "400", description = "El ID de usuario proporcionado no existe.") })
     public HttpResponse<String> eliminarUsuario(@RequestParam int userId) {
         return this.usuarioServiceImpl.borrarUsuario(userId);
-        
     }
 
     @PutMapping("/cambiarContrasena")

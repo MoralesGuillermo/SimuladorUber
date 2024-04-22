@@ -84,4 +84,43 @@ public function savepassword(Request $request,$clienteId){
     }
 
 }
+
+
+public function borrarUsuario($clienteId){
+    try {
+        $client = new Client();
+        $responseCliente = $client->put("http://localhost:8082/kitsune/usuario/eliminar/".$clienteId);
+        
+        return view('landing');
+        
+    } catch (RequestException $e) {
+        return 'Error al mostrar el perfil del cliente'.$e->getMessage();
+    }
+
+
+    
+}
+
+
+public function mostrarRidesClientes($clienteId){
+    try {
+        $client = new Client();
+        $response= $client->get("http://localhost:8082/kitsune/cliente/mostrarRidesParaFront/".$clienteId);
+        
+        $responseData = json_decode($response->getBody(), true);
+        $responseBody = $responseData['responseBody'];
+
+        // Crear un objeto que contenga el array responseBody
+        $rides = ['rides' => $responseBody];
+
+
+        return view('mostrarRidesCliente', ['rides' => $responseBody]);
+
+
+
+        
+    } catch (RequestException $e) {
+        return 'Error al mostrar el perfil del cliente'.$e->getMessage();
+    }
+}
 }
