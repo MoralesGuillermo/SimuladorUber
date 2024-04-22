@@ -253,8 +253,13 @@ body {
     background-color: red;
     color: white;
     font-weight: 700;
-    left: 20vw;
-    top: 10vh;
+    
+}
+
+#solicitudCancelAnchor{
+    position: absolute;
+    left: 77vw;
+    top: 87.2vh;
 }
 
 #solicitudHacerBtn{

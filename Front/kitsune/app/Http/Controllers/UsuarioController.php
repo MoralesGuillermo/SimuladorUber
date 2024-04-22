@@ -50,7 +50,7 @@ class UsuarioController extends Controller
     public function perfil($clienteId){
             try {
                 $client = new Client();
-                $responseCliente = $client->get("http://localhost:8081/kitsune/cliente/perfil/".$clienteId);
+                $responseCliente = $client->get("http://localhost:8081/kitsune/cliente/ver-perfil/".$clienteId);
                 $responseData = json_decode($responseCliente->getBody());
                 $perfilcliente = $responseData->responseBody;
                 return view('perfil', compact('perfilcliente'), compact('clienteId'));

@@ -59,7 +59,6 @@ public class RidesServiceImpl implements RidesService{
         if(this.clienteRepository.existsById(ride.getClienteid())){
             Cliente clienteRide = this.clienteRepository.findById(ride.getClienteid()).get();
                 Rides nvoRide = new Rides();
-          
                 nvoRide.setCliente(clienteRide);
                 nvoRide.setCosto(ride.getCosto());
                 nvoRide.setEstatus('P');

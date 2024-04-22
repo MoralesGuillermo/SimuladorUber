@@ -39,9 +39,7 @@ Route::get('/password', function () {
     return view('cambiarPassword');
 })->name('cambiarPassword');
 
-Route::get('/solicitar-ride', function(){
-    return view('ride');
-})->name('ride');
+Route::get('solicitar-ride', [RidesController::class, 'viewSolicitar'])->name('ride');
 
 Route::get('/solicitar-ride/confirm', function(){
     return view('esperarSolicitud');

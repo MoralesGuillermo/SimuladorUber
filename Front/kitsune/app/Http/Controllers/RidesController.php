@@ -27,8 +27,10 @@ class RidesController extends Controller
         ]]);    // Se hace la request. El 'json' es el @RequestBody
         $data = $response->getBody();
         $jsonResponse = json_decode($data, true); // Decodificamos el body para poder usarlo como valores
+        $rideId = $jsonResponse["responseBody"]["rideId"];
+        $clienteId = $jsonResponse["responseBody"]["clienteid"];
         if ($jsonResponse["status"] == 200){
-            echo "Ride solicitado con exito";
+            return view('esperarSolicitud', compact('rideId', 'clienteId'));
         }else{
             echo "NADA";
             echo $jsonResponse["status"];
