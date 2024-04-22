@@ -10,7 +10,7 @@
 </head>
 <body style="background-color: orange;">
 
-        
+
 
     <style type="text/css">
     html {
@@ -28,7 +28,6 @@
         -moz-box-sizing: border-box;
         box-sizing: border-box;
     }
-
     .seccion-perfil-usuario .perfil-usuario-portada {
     display: block;
     position: relative;
@@ -52,7 +51,7 @@
                     <a href="{{ route('landing') }}"><p class="h4" id="kitsuneTitle">kitsune</p></a>
                     <div class="perfil-usuario-avatar">
                         <img src="{{ asset('../resources/img/usuario.jpg') }}" alt="img-avatar">
-                        <button type="button" class="boton-avatar">
+                        <button type="button" class="boton-avatar"  href="{{ route('borrarUsuario', ['clienteId' => $clienteId]) }}">
                             <i class="far fa-image"></i>
                         </button>
                     </div>
@@ -75,10 +74,17 @@
                         <li><i class="icono fas fa-map-marker-alt"></i> Genero: {{$perfilcliente->perfilPersona->genero}}</li>
                         <li><i class="icono fas fa-calendar-alt"></i> Username: {{$perfilcliente->username}}</li>
                         <a class="btn btn-warning"  href="{{ route('ride') }}">Solicitar Ride</a>
-                        <a class="btn btn-success"  href="{{ route('mostrarRides') }}">Historico Rides</a></button>
+                        <a class="btn btn-success" href="{{ route('mostraRidesCliente', ['clienteId' => $clienteId]) }}">Historico Rides</a>
                         <p> </p>
                         <a class="btn btn-warning"  href="{{ route('cambiarPassword') }}">Cambiar Contraseña</a>
                         <a class="btn btn-success"  href="{{ route('nuevaTarjeta') }}">Agregar Tarjeta</a></button>
+
+                        <!--Cambio hecho por Danny, para agregar el boton borrar usuario -->
+                        <form method="POST" action="{{ route('borrarUsuario', ['clienteId' => $clienteId]) }}" style="margin-top: 10%">
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" class="btn btn-warning">Borrar usuario</button>
+                        </form>
                     </ul>
             </div>
         </section>

@@ -12,6 +12,7 @@
 }
 
 
+
 #kitsuneTitle{
     position: absolute;
     top: 10px;
@@ -23,6 +24,22 @@
     position: absolute;
     top: 15vh;
     left: 15vw;
+}
+
+.topNav{
+    background-color: orange;
+    color: white;
+    position: absoute;
+    width: 100vw;
+    height: 7vh;
+    text-align: right;
+    padding: 1%;
+}
+
+.navElement{
+    display: inline-block;
+    margin-left: 7px;
+    font-weight: 600;
 }
 #usernameInput{
     position: relative;
@@ -73,6 +90,19 @@
     font-weight: 700;
     border: 1px solid black;
     display: inline-block;
+}
+
+#kitsuneTitle{
+    position: absolute;
+    top: 10px;
+    left: 3vw;
+    color: white;
+}
+
+#loginNuevoRegistro{
+    position: absolute;
+    top: 15vh;
+    left: 15vw;
 }
 
 #solicitudPeticionDiv{
@@ -251,7 +281,7 @@ body {
     color: white;
     font-weight: 700;
     left: 20vw;
-    top: 10vh;
+    top: 10vh;;
 }
 
 #solicitudHacerBtn{
@@ -261,8 +291,10 @@ body {
     color: white;
     font-weight: 700;
     left: 20vw;
-    top: 10vh;
+    top: 10vh;;
 }
+
+
 
 #mensajeEspera{
     position: relative;
@@ -276,28 +308,7 @@ body {
     right: 49vw;
 }
 
-#calificaViajeMsj{
-    position: relative;
-    color: gray;
-    top: 25vh;
-    left: 45px;
-}
 
-#calificarBtn{
-    position: relative;
-    top: 30vh;
-}
-
-#calificarOmitirBtn{
-    position: relative;
-    top: 30vh;
-    margin-left: 10px;
-}
-
-#calificacionInput{
-    position: relative;
-    top:27vh;
-}
 
 
 .topNav{
@@ -325,10 +336,6 @@ body {
       opacity: 0.3;
     }
   }
-
-.hidden-element{
-    visibility: hidden;
-}
 
 /*GOOGLE MAPS API MAPS*/
 /**

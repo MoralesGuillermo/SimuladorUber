@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cambiar Contraseña | Kitsune</title>
+    <title>Document</title>
 </head>
 <body style="background-color: #ffe6cd;">
     <nav class="topNav" id="loginNavbar" style="background-color: orange;color: white;position: absoute;width: 100vw;height: 7vh;text-align: right;padding: 1%;">
@@ -25,7 +25,7 @@
             <input class="form-control" style="padding: 10px;border-radius: 25px;" type="password" id="contrasena" name="contrasena" value="ContraseñaMaziso2"><br>
     
             <div class="buttons" style="padding: 10px">
-                <button class="btn" style="background-color: #ffe6cd;border-color: rgb(159, 152, 145);"><a href="#" onclick="history.go(-1); return false;">Cancelar</a></button>
+                <button class="btn" style="background-color: #ffe6cd;border-color: rgb(159, 152, 145);"><a href="{{ route('perfil') }}">Cancelar</a></button>
                 <button class="btn" style="background-color: #ffe6cd;border-color: rgb(159, 152, 145);"><a href="{{ route('login') }}">Confirmar</a></button>
             </div>
         </form>

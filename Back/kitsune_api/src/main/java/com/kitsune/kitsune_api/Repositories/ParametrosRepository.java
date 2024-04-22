@@ -8,5 +8,4 @@ import com.kitsune.kitsune_api.entities.Parametros;
 @Repository
 public interface ParametrosRepository extends CrudRepository<Parametros, Integer>{
     
-    public Parametros getByDescripcion(String descripcion);
 }

@@ -3,9 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RidesController;
 use App\Http\Controllers\UsuarioController;
-use App\Http\Controllers\TarjetaController;
+use App\Http\Controllers\FrontTarjetaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,20 +21,20 @@ use App\Http\Controllers\TarjetaController;
 Route::get('/test/inicio', [TestController::class, 'vista']);
 Route::get('/test/back', [TestController::class, 'index']);
 
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('login');
 })->name('login');
 
 Route::get('/crear', function () {
-    return view('crearUsuario');
-})->name('crearUsuario');
+    return view('crearUsuario');})->name('crearUsuario');
 
     
-Route::post('/guardar', [UsuarioController::class, 'crear'])->name('crear');
-
-Route::get('/password', function () {
-    return view('cambiarPassword');
-})->name('cambiarPassword');
+    Route::post('/guardar', [UsuarioController::class, 'crear'])->name('crear');
+    Route::get('/guardarperfil', [UsuarioController::class, 'perfil'])->name('perfil');
+   
+    Route::get('/password', function () {
+        return view('cambiarPassword');
+    })->name('cambiarPassword');
 
 Route::get('/solicitar-ride', function(){
     return view('ride');
@@ -46,31 +46,30 @@ Route::get('/solicitar-ride/confirm', function(){
 
 Route::get('/logon', [LoginController::class, 'auth'])->name('logon');
 
-Route::get('/', function () {
+Route::get('/landing', function () {
     return view('landing');
 })->name('landing');
 
-Route::get('/perfil/{clienteId}',[UsuarioController::class, 'perfil'])->name('usuario.perfil');
 
-Route::get('/nuevaTarjeta', function () {
-    return view('nuevaTarjeta');
-})->name('nuevaTarjeta');
-
-Route::get('/conductor', function () {
-    return view('vistaConductor');
-})->name('conductor');
-
-Route::get('/mostrarRides', function () {
-    return view('mostrarRidesCliente');
-})->name('mostrarRides');
+Route::get('/perfil', function () {
+    return view('perfil');
+})->name('perfil');
 
 
-Route::post('/crearTarjeta', [TarjetaController::class, 'crearTarjeta'])->name('crearTarjeta');
 
-Route::get('/make-solicitar-ride', [RidesController::class, 'solicitarRide'])->name('solicitarNuevoRide');
 
-Route::get('/consultar-precio/{distancia}', [RidesController::class, 'consultarPrecio']);
+    //Creadas por Danny
+            Route::get('/nuevaTarjeta', function () {
+                return view('nuevaTarjeta');
+            })->name('nuevaTarjeta');
 
-Route::get('/calificar/{rideId}', [RidesController::class, 'vistaCalificar'])->name('vistaCalificar');
 
-Route::get('/calificacion', [RidesController::class, 'calificar'])->name('calificar');
+
+
+
+                Route::post('/crearTarjeta', [FrontTarjetaController::class, 'crearTarjeta'])->name('crearTarjeta');
+                Route::get('/perfil/{clienteId}',[UsuarioController::class, 'perfil'])->name('usuario.perfil');
+
+
+                Route::get('/mostrarRidesCliente/{clienteId}',[UsuarioController::class, 'mostrarRidesClientes'])->name('mostraRidesCliente');
+                Route::put('/borrarUsuario/{clienteId}',[UsuarioController::class, 'borrarUsuario'])->name('borrarUsuario');

@@ -23,7 +23,7 @@ public class Usuario {
 
     private String passkey;
 
-    private char estatus;
+    private char estatus = 'A';
 
     @OneToOne(mappedBy = "usuario")
     private Cliente cliente;

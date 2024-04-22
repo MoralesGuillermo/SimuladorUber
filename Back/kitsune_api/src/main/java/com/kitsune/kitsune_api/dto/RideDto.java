@@ -1,9 +1,9 @@
 package com.kitsune.kitsune_api.dto;
 
-import com.kitsune.kitsune_api.entities.Direcciones;
-
 import lombok.Data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kitsune.kitsune_api.entities.Cliente;
 
 @Data
 public class RideDto {
@@ -14,10 +14,16 @@ public class RideDto {
 
     private int clienteid;
 
+    @JsonIgnore
+    private Cliente clienteRide;
+
     private int conductorId;
 
-    private Direcciones origen;
+    private int  idDireccionOrigen;
 
-    private Direcciones destino ;
+    private int idDireccionDestino;
+
+    private int metodoid;
+
 }
 
