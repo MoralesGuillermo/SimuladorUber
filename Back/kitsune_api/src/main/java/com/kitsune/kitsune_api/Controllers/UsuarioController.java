@@ -35,8 +35,8 @@ public class UsuarioController {
         
     }
 
-    @PutMapping("/cambiarContraseña")
-    public HttpResponse<String> cambiarPaswword(@RequestParam int userId,@RequestParam String password) {
+    @PutMapping("/cambiarContrasena")
+    public HttpResponse<String> cambiarPassword(@RequestParam int userId,@RequestParam String password) {
         return this.usuarioServiceImpl.cambiarPassword(userId, password);
     }
 

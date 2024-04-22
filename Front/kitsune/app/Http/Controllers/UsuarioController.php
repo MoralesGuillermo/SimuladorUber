@@ -53,10 +53,35 @@ class UsuarioController extends Controller
                 $responseCliente = $client->get("http://localhost:8081/kitsune/cliente/perfil/".$clienteId);
                 $responseData = json_decode($responseCliente->getBody());
                 $perfilcliente = $responseData->responseBody;
-                return view('perfil', compact('perfilcliente'));
+                return view('perfil', compact('perfilcliente'), compact('clienteId'));
             } catch (RequestException $e) {
                 return 'Error al mostrar el perfil del cliente'.$e->getMessage();
             }
         
+}
+
+public function password($clienteId){
+    try {
+        $client = new Client();
+        $responseCliente = $client->get("http://localhost:8081/kitsune/cliente/perfil/".$clienteId);
+        $responseData = json_decode($responseCliente->getBody());
+        $perfilcliente = $responseData->responseBody;
+        return view('cambiarPassword', compact('perfilcliente'), compact('clienteId'));
+    } catch (RequestException $e) {
+        return 'Error al mostrar el perfil del cliente'.$e->getMessage();
+    }
+
+}
+
+public function savepassword(Request $request,$clienteId){
+    try {
+        $client = new Client();
+        $password = $request->input('password');
+        $response = $client->put("http://localhost:8081/kitsune/usuario/cambiarContrasena?userId=".$clienteId."&password=".$password); 
+        return redirect(route('login'));
+    } catch (RequestException $e) {
+        return 'Error al cambiar la contraseña'.$e->getMessage();
+    }
+
 }
 }
