@@ -18,7 +18,7 @@
         <p id="loginNuevoRegistro">¿Eres nuevo? <a href="{{ route('crearUsuario') }}">Registrate aquí</a></p>
         <input type="text" name="username" id="usernameInput" class="form-control" placeholder="Username">
         <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Password">
-        <button id="loginSubmitBtn" type="submit"><a href="{{ route('logon') }}">Log in</a></button>
+        <button id="loginSubmitBtn" type="submit">Log in</a></button>
         <button id="loginCancelBtn"><a href="{{ route('landing') }}">Return</a></button>
     </form>
     @php

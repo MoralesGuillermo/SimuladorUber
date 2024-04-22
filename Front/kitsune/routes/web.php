@@ -30,9 +30,9 @@ Route::get('/crear', function () {
     
     Route::post('/guardar', [UsuarioController::class, 'crear'])->name('crear');
 
-    Route::get('/password', function () {
-        return view('cambiarPassword');
-    })->name('cambiarPassword');
+    Route::get('/password/{clienteId}',[UsuarioController::class, 'password'])->name('password');
+
+    Route::put('/password/save/{clienteId}', [UsuarioController::class, 'savepassword'])->name('savepassword');
 
 Route::get('/solicitar-ride', function(){
     return view('ride');
@@ -62,5 +62,4 @@ Route::get('/mostrarRides', function () {
     return view('mostrarRidesCliente');
 })->name('mostrarRides');
 
-
-    Route::post('/crearTarjeta', [TarjetaController::class, 'crearTarjeta'])->name('crearTarjeta');
+Route::post('/crearTarjeta', [TarjetaController::class, 'crearTarjeta'])->name('crearTarjeta');
