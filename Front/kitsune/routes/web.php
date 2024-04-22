@@ -77,6 +77,8 @@ Route::get('/calificar/{rideId}', [RidesController::class, 'vistaCalificar'])->n
 
 Route::get('/calificacion', [RidesController::class, 'calificar'])->name('calificar');
 
-Route::post('/crearTarjeta', [TarjetaController::class, 'crearTarjeta'])->name('crearTarjeta');
+Route::get('/mostrarRidesCliente/{clienteId}',[UsuarioController::class, 'mostrarRidesClientes'])->name('mostraRidesCliente');
+
+Route::put('/borrarUsuario/{clienteId}',[UsuarioController::class, 'borrarUsuario'])->name('borrarUsuario');
 
 Route::get('peticion-viaje-aceptado/{rideId}', [RidesController::class, 'preguntarRideAceptado']);
