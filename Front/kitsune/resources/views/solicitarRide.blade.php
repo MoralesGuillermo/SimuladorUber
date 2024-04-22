@@ -26,15 +26,14 @@
         <input id="solicitudDestino" type="text" readonly placeholder="Destino">
         <input id="solicitudPrecio" type="text" readonly placeholder="Precio">
         <button id="solicitudHacerBtn" type="submit" disabled>Confirmar</button>
-        <a href=""><button id="solicitudCancelBtn">Cancelar</button></a>
         <input class="hidden-element" id="originLat" name="originLat" type="text">
         <input class="hidden-element" id="originLng" name="originLng" type="text">
         <input class="hidden-element" id="destinationLat" name="destinationLat" type="text">
         <input class="hidden-element" id="destinationLng" name="destinationLng" type="text">
         <input class="hidden-element" id="distance" name="distance" type="text">
-        <input class="hidden-element" id="clienteId" name="clienteId" type="text" value="1>
-        <input class="hidden-element" id="realPrice" name="realPrice" type="text">
-        
+        <input class="hidden-element" id="clienteId" name="clienteId" type="text" value="{{$clienteId}}">
+        <input class="hidden-element" id="realPrice" name="realPrice" type="text">    
     </form>
+    <a id="solicitudCancelAnchor"href="" onclick="history.go(-1); return false;"><button id="solicitudCancelBtn">Cancelar</button></a>
 </body>
 </html>

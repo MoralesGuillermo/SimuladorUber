@@ -15,7 +15,9 @@
     </nav>
     <div class="d-flex justify-content-center">
         <p class="h1 blink_me" id="mensajeEspera">Esperando que un conductor acepte su viaje...</p>
-        <a href=""><button class="btn btn-danger" id="esperaRegresarBtn">Cancelar</button></a>
+        <a id="esperaRegresarBtn" href="http://localhost/kitsune/public/cancelar-ride/{{$rideId}}/{{$clienteId}}"><button class="btn btn-danger">Cancelar</button></a>
     </div>
+    <div id="rideId" data-ride={{$rideId}}></div>
 </body>
+<script src="../resources/js/esperarSolicitud.js"></script>
 </html>
