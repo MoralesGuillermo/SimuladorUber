@@ -1,6 +1,7 @@
 package com.kitsune.kitsune_api.services.impl;
 
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +13,14 @@ import com.kitsune.kitsune_api.entities.Cliente;
 import com.kitsune.kitsune_api.entities.Conductor;
 import com.kitsune.kitsune_api.entities.Parametros;
 import com.kitsune.kitsune_api.entities.Rides;
+import com.kitsune.kitsune_api.entities.SolicitarRide;
 import com.kitsune.kitsune_api.repositories.ClienteRepository;
 import com.kitsune.kitsune_api.repositories.ConductorRepository;
 import com.kitsune.kitsune_api.repositories.DireccionesRepository;
 import com.kitsune.kitsune_api.repositories.MetodosPagoRepository;
 import com.kitsune.kitsune_api.repositories.ParametrosRepository;
 import com.kitsune.kitsune_api.repositories.RidesRepository;
+import com.kitsune.kitsune_api.repositories.SolicitudRideRepository;
 import com.kitsune.kitsune_api.services.RidesService;
 
 @Service
@@ -41,6 +44,9 @@ public class RidesServiceImpl implements RidesService{
     @Autowired
     private ParametrosRepository parametrosRepository;
 
+    @Autowired
+    private SolicitudRideRepository solicitudRideRepository;
+
     @Override
     public HttpResponse<RideDto> solicitarRide(RideDto ride) {
         HttpResponse<RideDto> response = new HttpResponse<>();
@@ -50,6 +56,18 @@ public class RidesServiceImpl implements RidesService{
         }
         if(this.clienteRepository.existsById(ride.getClienteid())){
             Cliente clienteRide = this.clienteRepository.findById(ride.getClienteid()).get();
+                Rides nvoRide = new Rides();
+                nvoRide.setCliente(clienteRide);
+                nvoRide.setCosto(ride.getCosto());
+                nvoRide.setEstatus('P');
+                nvoRide.setDireccionOrigen(ride.getOrigen());
+                nvoRide.setDireccionDestino(ride.getDestino());
+                nvoRide.setDistancia(ride.getDistancia());
+                nvoRide.setFecha(LocalDate.now());
+                Rides svdRide = ridesRepository.save(nvoRide);
+                ride.setRideId(svdRide.getRideId());
+                askRiders(svdRide.getRideId());
+
                 response.setStatus((short) 200);
                 response.setResponseBody(ride);
                 return response;
@@ -59,9 +77,18 @@ public class RidesServiceImpl implements RidesService{
     }
 
     private boolean solicitudrideIncompleto(RideDto ride){
-        System.out.println(ride.getClienteid());
         return (ride == null || ride.getClienteid() == 0);
     } 
+
+    private void askRiders(int rideId){
+        List<Conductor> conductores = (List<Conductor>) this.conductorRepository.findAll();
+        for (Conductor conductor: conductores){
+            SolicitarRide solicitud = new SolicitarRide();
+            solicitud.setRideId(rideId);
+            solicitud.setConductorId(conductor.getConductorId());
+            solicitudRideRepository.save(solicitud);
+        }
+    }
 
 
 
