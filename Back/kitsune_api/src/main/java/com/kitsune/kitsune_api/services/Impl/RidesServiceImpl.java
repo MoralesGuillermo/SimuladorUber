@@ -15,11 +15,7 @@ import com.kitsune.kitsune_api.entities.Conductor;
 import com.kitsune.kitsune_api.entities.Direcciones;
 import com.kitsune.kitsune_api.entities.Parametros;
 import com.kitsune.kitsune_api.entities.Rides;
-<<<<<<< HEAD
-import com.kitsune.kitsune_api.entities.SolicitudRide;
-=======
 import com.kitsune.kitsune_api.entities.SolicitarRide;
->>>>>>> 69ee8556ca34e8f115d0b4c89f80b6d18d8824cc
 import com.kitsune.kitsune_api.repositories.ClienteRepository;
 import com.kitsune.kitsune_api.repositories.ConductorRepository;
 import com.kitsune.kitsune_api.repositories.DireccionesRepository;
@@ -63,18 +59,8 @@ public class RidesServiceImpl implements RidesService{
         if(this.clienteRepository.existsById(ride.getClienteid())){
             Cliente clienteRide = this.clienteRepository.findById(ride.getClienteid()).get();
                 Rides nvoRide = new Rides();
+          
                 nvoRide.setCliente(clienteRide);
-<<<<<<< HEAD
-                nvoRide.setDireccionOrigen(ride.getOrigen());
-                nvoRide.setDireccionDestino(ride.getDestino());
-                nvoRide.setCosto(ride.getCosto());
-                nvoRide.setDistancia(ride.getDistancia());
-                nvoRide.setFecha(LocalDate.now());
-                nvoRide.setEstatus('S');
-                Rides svdRide = this.ridesRepository.save(nvoRide);
-                askDrivers(nvoRide.getRideId());
-                ride.setRideId(svdRide.getRideId());
-=======
                 nvoRide.setCosto(ride.getCosto());
                 nvoRide.setEstatus('P');
                 nvoRide.setDireccionOrigen(ride.getOrigen());
@@ -85,7 +71,6 @@ public class RidesServiceImpl implements RidesService{
                 ride.setRideId(svdRide.getRideId());
                 askRiders(svdRide.getRideId());
 
->>>>>>> 69ee8556ca34e8f115d0b4c89f80b6d18d8824cc
                 response.setStatus((short) 200);
                 response.setResponseBody(ride);
                 return response;
@@ -98,19 +83,6 @@ public class RidesServiceImpl implements RidesService{
         return (ride == null || ride.getClienteid() == 0);
     } 
 
-<<<<<<< HEAD
-    private void askDrivers(int rideId){
-        /**Llenar las solicitudes con los conductores mas cercanos */
-        List<Conductor> conductores = (List<Conductor>) this.conductorRepository.findAll();
-        for (Conductor conductor : conductores){
-            if (conductor.isDisponible()){
-                SolicitudRide solicitudRide = new SolicitudRide();
-                solicitudRide.setRideId(rideId);
-                solicitudRide.setConductorId(conductor.getConductorId());
-                solicitudRideRepository.save(solicitudRide);
-            }
-        }  
-=======
     private void askRiders(int rideId){
         List<Conductor> conductores = (List<Conductor>) this.conductorRepository.findAll();
         for (Conductor conductor: conductores){
@@ -119,7 +91,6 @@ public class RidesServiceImpl implements RidesService{
             solicitud.setConductorId(conductor.getConductorId());
             solicitudRideRepository.save(solicitud);
         }
->>>>>>> 69ee8556ca34e8f115d0b4c89f80b6d18d8824cc
     }
 
 
