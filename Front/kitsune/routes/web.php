@@ -78,3 +78,5 @@ Route::get('/calificar/{rideId}', [RidesController::class, 'vistaCalificar'])->n
 Route::get('/calificacion', [RidesController::class, 'calificar'])->name('calificar');
 
 Route::post('/crearTarjeta', [TarjetaController::class, 'crearTarjeta'])->name('crearTarjeta');
+
+Route::get('peticion-viaje-aceptado/{rideId}', [RidesController::class, 'preguntarRideAceptado']);
