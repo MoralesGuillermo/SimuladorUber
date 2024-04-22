@@ -48,7 +48,6 @@ public class ClienteServiceImpl implements ClienteService{
         return response;
     }
 
-
     private boolean isIncomplete(ClienteDto clienteDto){
         return (clienteDto == null || clienteDto.getPersona() == null || clienteDto.getUsuario() == null);
     } 

@@ -40,6 +40,8 @@ public class UsuarioServiceImpl implements UsuarioService{
             return (expected == null || !user.getPasskey().equals(expected.getPasskey()));
         }
 
+        //Comentado para el logon
+
         /*private boolean noUserAsigned(Usuario user){
             return (user.getCliente() == null && user.getConductor() == null);
         }
