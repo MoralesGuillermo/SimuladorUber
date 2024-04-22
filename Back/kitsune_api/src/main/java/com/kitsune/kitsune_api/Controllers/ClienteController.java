@@ -44,11 +44,6 @@ public class ClienteController{
     public HttpResponse<Cliente> crearCliente(@RequestBody ClienteDto clienteDto) {
         return this.clienteServiceImpl.crearCliente(clienteDto);
     }
-    
-    @GetMapping("/perfil/{clienteId}")
-    public HttpResponse<PerfilCliente> verPerfil(@PathVariable int clienteId) {
-        return this.clienteServiceImpl.verPerfil(clienteId);
-    }
         
     @GetMapping("/test")
     public String testAPI() {
