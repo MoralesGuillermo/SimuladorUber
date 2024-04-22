@@ -1,5 +1,6 @@
 package com.kitsune.kitsune_api.services.impl;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,31 +10,36 @@ import com.kitsune.kitsune_api.dto.HttpResponse;
 import com.kitsune.kitsune_api.dto.RideDto;
 import com.kitsune.kitsune_api.entities.Cliente;
 import com.kitsune.kitsune_api.entities.Conductor;
+import com.kitsune.kitsune_api.entities.Parametros;
 import com.kitsune.kitsune_api.entities.Rides;
 import com.kitsune.kitsune_api.repositories.ClienteRepository;
 import com.kitsune.kitsune_api.repositories.ConductorRepository;
 import com.kitsune.kitsune_api.repositories.DireccionesRepository;
 import com.kitsune.kitsune_api.repositories.MetodosPagoRepository;
+import com.kitsune.kitsune_api.repositories.ParametrosRepository;
 import com.kitsune.kitsune_api.repositories.RidesRepository;
 import com.kitsune.kitsune_api.services.RidesService;
 
 @Service
 public class RidesServiceImpl implements RidesService{
 
-@Autowired
-private ClienteRepository clienteRepository;
+    @Autowired
+    private ClienteRepository clienteRepository;
 
-@Autowired
-private RidesRepository ridesRepository;
+    @Autowired
+    private RidesRepository ridesRepository;
 
-@Autowired
-private ConductorRepository conductorRepository;
+    @Autowired
+    private ConductorRepository conductorRepository;
 
-@Autowired
-private DireccionesRepository direccionesRepository;
+    @Autowired
+    private DireccionesRepository direccionesRepository;
 
-@Autowired
-private MetodosPagoRepository metodosPagoRepository;
+    @Autowired
+    private MetodosPagoRepository metodosPagoRepository;
+
+    @Autowired
+    private ParametrosRepository parametrosRepository;
 
     @Override
     public HttpResponse<RideDto> solicitarRide(RideDto ride) {
@@ -44,7 +50,6 @@ private MetodosPagoRepository metodosPagoRepository;
         }
         if(this.clienteRepository.existsById(ride.getClienteid())){
             Cliente clienteRide = this.clienteRepository.findById(ride.getClienteid()).get();
-                ride.setClienteRide(clienteRide);
                 response.setStatus((short) 200);
                 response.setResponseBody(ride);
                 return response;
@@ -54,7 +59,8 @@ private MetodosPagoRepository metodosPagoRepository;
     }
 
     private boolean solicitudrideIncompleto(RideDto ride){
-        return (ride == null || ride.getClienteid()== 0);
+        System.out.println(ride.getClienteid());
+        return (ride == null || ride.getClienteid() == 0);
     } 
 
 
@@ -76,9 +82,9 @@ private MetodosPagoRepository metodosPagoRepository;
         nuevoRide.setCliente(this.clienteRepository.findById(ride.getClienteid()).get());
         nuevoRide.setConductor(conductor);
         conductor.setDisponible(false); //El conductor deja de estar disponible
-        nuevoRide.setDireccionOrigen(this.direccionesRepository.findById(ride.getIdDireccionOrigen()).get());
-        nuevoRide.setDireccionDestino(this.direccionesRepository.findById(ride.getIdDireccionDestino()).get());
-        nuevoRide.setMetodospago(this.metodosPagoRepository.findById(ride.getMetodoid()).get());
+        //nuevoRide.setDireccionOrigen(this.direccionesRepository.findById(ride.getIdDireccionOrigen()).get());
+        //nuevoRide.setDireccionDestino(this.direccionesRepository.findById(ride.getIdDireccionDestino()).get());
+        //nuevoRide.setMetodospago(this.metodosPagoRepository.findById(ride.getMetodoid()).get());
         nuevoRide.setCliente(this.clienteRepository.findById(ride.getClienteid()).get());
         this.conductorRepository.save(conductor);
          Rides rideIniciado = this.ridesRepository.save(nuevoRide);
@@ -153,6 +159,37 @@ private MetodosPagoRepository metodosPagoRepository;
         }
         response.setStatus((short) 404);
         return response;
+    }
+
+    @Override
+    public HttpResponse<Double> solicitarPrecio(float distancia) {
+        Double precio;
+        double precioNoRound;
+        HttpResponse<Double> response = new HttpResponse<>();
+        Parametros tarifaBaseParam = this.parametrosRepository.getByDescripcion("TARIFA_BASE");
+        double tarifaBase = tarifaBaseParam.getValor();
+        precioNoRound = calcularPrecio(distancia, tarifaBase);
+        precio = round(precioNoRound);
+        response.setStatus((short)200);
+        response.setResponseBody(precio);
+        return response;    
+    }
+
+
+    private double calcularPrecio(float distancia, double tarifaBase){
+        double precio;
+        if (distancia <= 1.0){
+            precio =   tarifaBase; 
+        }else{
+            precio =  tarifaBase*distancia;
+        }
+        return precio;
+    }
+
+    private Double round(double nonRoundedValue){
+        DecimalFormat df = new DecimalFormat("####.##");
+        String rounderNumerString = df.format(nonRoundedValue);
+        return Double.parseDouble(rounderNumerString);
     }
 
 
