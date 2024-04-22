@@ -29,6 +29,12 @@ public class ClienteController{
     @Autowired
     private ClienteServiceImpl clienteServiceImpl;
 
+    @GetMapping("/ver-perfil/{clienteId}")
+    public HttpResponse<PerfilCliente> verPerfil(@PathVariable int clienteId) {
+        return this.clienteServiceImpl.verPerfil(clienteId);
+    }
+    
+
     @GetMapping("/mostrarRides")
     public HttpResponse<List<InformacionRideCliente>> mostrarRides(@RequestParam int clienteId) {
         return this.clienteServiceImpl.mostrarRidesCliente(clienteId);
@@ -37,11 +43,6 @@ public class ClienteController{
     @PostMapping("/crear")
     public HttpResponse<Cliente> crearCliente(@RequestBody ClienteDto clienteDto) {
         return this.clienteServiceImpl.crearCliente(clienteDto);
-    }
-    
-    @GetMapping("/perfil/{clienteId}")
-    public HttpResponse<PerfilCliente> verPerfil(@PathVariable int clienteId) {
-        return this.clienteServiceImpl.verPerfil(clienteId);
     }
         
     @GetMapping("/test")

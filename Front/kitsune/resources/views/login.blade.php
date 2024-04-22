@@ -11,15 +11,20 @@
 </head>
 <body>
     <nav class="topNav" id="loginNavbar">
-        <a href="{{ route('landing') }}"><p class="h4" id="kitsuneTitle">kitsune</p></a>
+        <a href="{{route('landing')}}"><p class="h4" id="kitsuneTitle">kitsune</p></a>
     </nav>
     <form class="container" id="loginBox" action="{{route('logon')}}" method="GET">
         <p class="h2" id="loginTitle">Log In</p>
-        <p id="loginNuevoRegistro">¿Eres nuevo? <a href="{{ route('crearUsuario') }}">Registrate aquí</a></p>
+        <p id="loginNuevoRegistro">¿Eres nuevo? <a href="{{route('crearUsuario')}}">Registrate aquí</a></p>
         <input type="text" name="username" id="usernameInput" class="form-control" placeholder="Username">
         <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Password">
+<<<<<<< HEAD
         <button id="loginSubmitBtn" type="submit">Log in</a></button>
         <button id="loginCancelBtn"><a href="{{ route('landing') }}">Return</a></button>
+=======
+        <button id="loginSubmitBtn" type="submit">Log in</button>
+        <a href="{{route('landing')}}"><button id="loginCancelBtn">Return</button></a>
+>>>>>>> 79d31e010d5047dfe82d848f9ff574dcaccee619
     </form>
     @php
         try{
