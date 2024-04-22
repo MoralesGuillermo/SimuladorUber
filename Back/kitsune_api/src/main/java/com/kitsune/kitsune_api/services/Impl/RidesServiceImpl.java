@@ -190,8 +190,5 @@ public class RidesServiceImpl implements RidesService{
         DecimalFormat df = new DecimalFormat("####.##");
         String rounderNumerString = df.format(nonRoundedValue);
         return Double.parseDouble(rounderNumerString);
-    }
-
-
-    
+    } 
 }

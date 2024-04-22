@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="../resources/css/app.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" }
@@ -13,7 +13,7 @@
 </head>
 <body>
     <nav class="topNav" id="loginNavbar">
-        <a href=""><p class="h4" id="kitsuneTitle">kitsune</p></a>
+        <a href="{{ route('landing') }}"><p class="h4" id="kitsuneTitle">kitsune</p></a>
     </nav>
     <div id="mapsDiv">
         <script async
@@ -26,7 +26,7 @@
         <input id="solicitudDestino" type="text" readonly placeholder="Destino">
         <input id="solicitudPrecio" type="text" readonly placeholder="Precio">
         <button id="solicitudHacerBtn" type="submit" disabled>Confirmar</button>
-        <a href=""><button id="solicitudCancelBtn">Cancelar</button></a>
+        <a href="#" onclick="history.go(-1); return false;"><button id="solicitudCancelBtn">Cancelar</button></a>
         
     </form>
 </body>

@@ -14,6 +14,7 @@ import com.kitsune.kitsune_api.dto.PerfilPersona;
 import com.kitsune.kitsune_api.entities.Cliente;
 import com.kitsune.kitsune_api.entities.Persona;
 import com.kitsune.kitsune_api.entities.Rides;
+import com.kitsune.kitsune_api.entities.Usuario;
 import com.kitsune.kitsune_api.repositories.ClienteRepository;
 import com.kitsune.kitsune_api.repositories.PersonaRepository;
 import com.kitsune.kitsune_api.repositories.UsuarioRepository;
@@ -39,13 +40,14 @@ public class ClienteServiceImpl implements ClienteService{
         }
         else if (personaAlreadyExists(clienteDto) || usuarioAlreadyExists(clienteDto)){ // Se usó un dni o un usuario ya existente
             response.setStatus((short) 406);
-        }else{
+        }else {
             Cliente savedCliente = saveCliente(clienteDto);
             response.setStatus((short) 200);
             response.setResponseBody(savedCliente);
         }
         return response;
     }
+
 
     private boolean isIncomplete(ClienteDto clienteDto){
         return (clienteDto == null || clienteDto.getPersona() == null || clienteDto.getUsuario() == null);
@@ -74,6 +76,7 @@ public class ClienteServiceImpl implements ClienteService{
             
             PerfilCliente perfilCliente = new PerfilCliente();
             PerfilPersona perfilPersona = new PerfilPersona();
+            Usuario usuarioCLiente = cliente.getUsuario();
             Persona personaCliente = cliente.getPersona();
             
             perfilPersona.setDni(personaCliente.getDni());
@@ -81,10 +84,11 @@ public class ClienteServiceImpl implements ClienteService{
             perfilPersona.setApellido(personaCliente.getApellido());
             perfilPersona.setEmail(personaCliente.getEmail());
             perfilPersona.setTelefono(personaCliente.getTelefono());
-            
+            perfilPersona.setEdad(personaCliente.getEdad());
+            perfilPersona.setGenero(personaCliente.getGenero());
             perfilCliente.setPerfilPersona(perfilPersona); 
             perfilCliente.setUsername(cliente.getUsuario().getUsername());
-            
+            perfilCliente.setEstatus(usuarioCLiente.getEstatus());
             response.setStatus((short) 200);
             response.setResponseBody(perfilCliente);
             return response;
@@ -154,3 +158,5 @@ public class ClienteServiceImpl implements ClienteService{
         }
     }
 }
+
+
