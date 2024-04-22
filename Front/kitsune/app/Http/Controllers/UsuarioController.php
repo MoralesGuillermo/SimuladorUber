@@ -80,7 +80,7 @@ public function savepassword(Request $request,$clienteId){
         $response = $client->put("http://localhost:8081/kitsune/usuario/cambiarContrasena?userId=".$clienteId."&password=".$password); 
         return redirect(route('login'));
     } catch (RequestException $e) {
-        return 'Error al mostrar el perfil del cliente'.$e->getMessage();
+        return 'Error al cambiar la contraseña'.$e->getMessage();
     }
 
 }
