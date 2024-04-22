@@ -41,7 +41,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    
+
 }
     
     </style>
@@ -74,11 +74,14 @@
                     <ul class="lista-datos">
                         <li><i class="icono fas fa-map-marker-alt"></i> Genero: {{$perfilcliente->perfilPersona->genero}}</li>
                         <li><i class="icono fas fa-calendar-alt"></i> Username: {{$perfilcliente->username}}</li>
-                        <a class="btn btn-warning"  href="{{ route('ride',['clienteId' => $clienteId])}}">Solicitar Ride</a>
-                        <a class="btn btn-success"  href="{{ route('mostrarRides', ['clienteId' => $clienteId]) }}">Historico Rides</a></button>
+                        <form action="{{route('ride') }}" method="GET" style="display:inline">
+                            <input class="hidden-element" name="clienteId" style="position:fixed"value="{{$perfilcliente->clienteId}}" type="text">
+                            <button class="btn btn-warning"  type="submit">Solicitar Ride</button>
+                        </form>
+                        <a class="btn btn-success"  href="{{ route('mostrarRides') }}">Historico Rides</a></button>
                         <p> </p>
-                        <a class="btn btn-warning"  href="{{ route('password', ['clienteId' => $clienteId]) }}">Cambiar Contraseña</a>
-                        <a class="btn btn-success"  href="{{ route('nuevaTarjeta', ['clienteId' => $clienteId]) }}">Agregar Tarjeta</a></button>
+                        <a class="btn btn-warning"  href="{{ route('cambiarPassword') }}">Cambiar Contraseña</a>
+                        <a class="btn btn-success"  href="{{ route('nuevaTarjeta') }}">Agregar Tarjeta</a></button>
                     </ul>
             </div>
         </section>

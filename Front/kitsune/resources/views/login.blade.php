@@ -18,14 +18,9 @@
         <p id="loginNuevoRegistro">¿Eres nuevo? <a href="{{route('crearUsuario')}}">Registrate aquí</a></p>
         <input type="text" name="username" id="usernameInput" class="form-control" placeholder="Username">
         <input type="password" name="password" class="form-control" id="passwordInput" placeholder="Password">
-<<<<<<< HEAD
-        <button id="loginSubmitBtn" type="submit">Log in</a></button>
-        <button id="loginCancelBtn"><a href="{{ route('landing') }}">Return</a></button>
-=======
         <button id="loginSubmitBtn" type="submit">Log in</button>
-        <a href="{{route('landing')}}"><button id="loginCancelBtn">Return</button></a>
->>>>>>> 79d31e010d5047dfe82d848f9ff574dcaccee619
     </form>
+    <a  id="loginCancelAnchor" href="{{route('landing')}}"><button id="loginCancelBtn">Regresar</button></a>
     @php
         try{
             if ($failed){
